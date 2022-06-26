@@ -27,10 +27,10 @@ public class Player extends Unit {
         if (isLevelUp()) {
             experience = experience-PlayerLevel * 50;
             PlayerLevel++;
-            HealthPool = +10 * PlayerLevel;
+            HealthPool = HealthPool +10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints = +4 * PlayerLevel;
-            DefensePoints = +PlayerLevel;
+            AttackPoints = AttackPoints +4 * PlayerLevel;
+            DefensePoints = DefensePoints +PlayerLevel;
         }
     }
 
@@ -39,6 +39,7 @@ public class Player extends Unit {
             return true;
         return false;
     }
+
 
     @Override
     public void accept(Unit unit) {
@@ -49,4 +50,8 @@ public class Player extends Unit {
         return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());
     }
 
+    @Override
+    public void onDeath() {
+
+    }
 }

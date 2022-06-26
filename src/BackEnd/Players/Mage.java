@@ -1,5 +1,10 @@
 package BackEnd.Players;
 
+import FrontEnd.Messages.MessageCallback;
+import BackEnd.Enemys.Enemy;
+
+import java.text.MessageFormat;
+import java.util.*;
 
 public class Mage extends Player{
     Integer ManaPool; //maximal value of mama
@@ -10,7 +15,7 @@ public class Mage extends Player{
     Integer AbilityRange;
 
     public Mage(String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, ability_name);
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Blizzard");
         this.ManaPool = ManaPool;
         this.CurrentMama = this.ManaPool/4;
         this.MamaCost = MamaCost;
@@ -32,12 +37,32 @@ public class Mage extends Player{
         this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama +1))*PlayerLevel;
     }
 
-    public void AbilityCost(){
-        //TODO: need to implement
-        this.CurrentMama = this.CurrentMama - this.MamaCost;
-        Integer hits =0;
-        while ((hits < this.HitsCount) ){
+    //Mage can't use the ability if mama cost > current mama
+    private boolean canCostTheAbility(){
+        if(this.CurrentMama > this.MamaCost)
+            return true;
+        return false;
+    }
 
+    public void AbilityCast(Player player, List<Enemy> enemies){
+        //TODO: need to implement
+        if(canCostTheAbility()){
+            this.CurrentMama = this.CurrentMama - this.MamaCost;
+            Integer hits =0;
+            List<Enemy> EnemyInRange = super.filterRange(enemies,this.AbilityRange);
+            Random rand = new Random();
+            while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
+                Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
+                enemyAttack.setHealthAmount(enemyAttack.getHealthAmount()-this.SpellPower);
+                hits++;
+                if(!enemyAttack.isAlive())
+                    EnemyInRange.remove(enemyAttack);
+            }
         }
+        else {
+            String msg = MessageFormat.format("{0} does not have enough Mama to use the ability.", super.get_Name());
+            messageCallback.send(msg);
+        }
+
     }
 }

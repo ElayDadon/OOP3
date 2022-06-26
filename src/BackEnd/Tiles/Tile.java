@@ -26,6 +26,11 @@ public abstract class Tile implements Comparable<BackEnd.Tiles.Tile> {
     public void setPosition(Position position) {
         this.position = position;
     }
+    protected void switch_Places(Tile place){
+        Position res = place.position;
+        place.position = position;
+        position = res;
+    }
 
     public abstract void accept(Unit unit);
 
