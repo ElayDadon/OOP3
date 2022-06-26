@@ -1,6 +1,5 @@
 package BackEnd.Players;
 
-import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Tiles.Unit;
 
@@ -15,17 +14,18 @@ public class Player extends Unit {
 
 
 
-    public Player( String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints)
+    public Player(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, String ability_name)
     {
         super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
-        this.Experience = 0;
+        ABILITY_NAME = ability_name;
+        this.experience = 0;
         this.PlayerLevel = 1;
     }
 
     public void LevelingUp()
     {
         if (isLevelUp()) {
-            Experience = Experience-PlayerLevel * 50;
+            experience = experience-PlayerLevel * 50;
             PlayerLevel++;
             HealthPool = +10 * PlayerLevel;
             HealthAmount = HealthPool;
@@ -35,7 +35,7 @@ public class Player extends Unit {
     }
 
     public boolean isLevelUp(){
-        if (PlayerLevel * 50 <= Experience)
+        if (PlayerLevel * 50 <= experience)
             return true;
         return false;
     }
