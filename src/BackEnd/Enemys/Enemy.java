@@ -14,9 +14,7 @@ public class Enemy extends Unit {
     }
 
     public boolean isAlive(){
-        if(this.HealthAmount>0)
-            return true;
-        return false;
+        return this.HealthAmount > 0;
     }
 
     @Override
