@@ -9,6 +9,14 @@ public class Unit extends Tile {
     public int HealthAmount;
     public int AttackPoints;
     public int DefensePoints;
+
+    protected Unit(char tile, int HealthPool, int HealthAmount, int AttackPoints, int DefensePoints) {
+        super(tile);
+        this.HealthPool = HealthPool;
+        this.HealthAmount = HealthAmount;
+        this.AttackPoints = AttackPoints;
+        this.DefensePoints = DefensePoints;
+    }
 /*
     protected Unit(char tile, String name, int healthCapacity, int attack, int defense) {
         super(tile);

@@ -8,9 +8,9 @@ public class Mage extends Player{
     Integer HitsCount; // maximal numbers of times a single cast can hit
     Integer AbilityRange;
 
-    public  Mage(Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
+    public  Mage(Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange, char tile){
         //ToDO: add player constractor
-        super();
+        super(tile);
         this.ManaPool = ManaPool;
         this.CurrentMama = this.ManaPool/4;
         this.MamaCost = MamaCost;
