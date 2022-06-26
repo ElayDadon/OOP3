@@ -1,6 +1,4 @@
-package BackEnd;
-
-import BackEnd.Boards.Tile;
+package BackEnd.Tiles;
 
 public abstract class Unit extends Tile {
 

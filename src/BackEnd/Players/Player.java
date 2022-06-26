@@ -1,7 +1,5 @@
 package BackEnd.Players;
 
-import BackEnd.Unit;
-
 public class Player extends Unit {
     protected Integer Experience;  // Increased by killing enemies
     protected Integer PlayerLevel; // Increased When Experience reached to 50 X level
