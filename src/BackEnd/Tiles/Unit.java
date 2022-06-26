@@ -57,12 +57,14 @@ public String get_Name(){
 		Random rand = new Random();
         Integer upperBound = AttackPoints;
         Integer attack = (Integer) (rand.nextInt(upperBound+1));
+        messageCallback.send(String.format("%s rolled %d attack points", get_Name(),(int)(attack)));
         return attack;
     }
     protected Integer Defense(){
         Random rand = new Random();
         Integer upperBound = DefensePoints;
         Integer Defense = (Integer) (rand.nextInt(upperBound+1));
+        messageCallback.send(String.format("%s rolled %d Defense points", get_Name(),(int)(Defense)));
         return Defense;
     }
 
@@ -70,6 +72,19 @@ public String get_Name(){
     public Integer getDefense(){return DefensePoints;}
 
     public abstract void onDeath();
+    protected void battle(Unit u){
+        messageCallback.send(String.format("%s is fighting %s \n%s \n%s ",get_Name(),u.get_Name(),describe(),u.describe()));
+        int dealt = Math.max(attack()-u.Defense(),0);
+        messageCallback.send(String.format("%s done %d damage to %s ",get_Name(),dealt,u.get_Name()));
+        u.Reduce_Amount(dealt);
+    }
+
+    private void Reduce_Amount(int i){
+        this.HealthAmount = this.HealthAmount-i;
+    }
+    private void setCurrentHealth(int i) {
+        this.HealthAmount = i;
+    }
 
     public Integer getHealthAmount(){
         return this.HealthAmount;
@@ -105,6 +120,9 @@ public String get_Name(){
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttack(), getDefense());
     }*/
+    public String describe() {
+        return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", get_Name(), getCurrentHealth(), getAttack(), getDefense());
+    }
 
 
 }
