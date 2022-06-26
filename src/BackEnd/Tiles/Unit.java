@@ -1,5 +1,7 @@
 package BackEnd.Tiles;
 import BackEnd.Boards.Position;
+import BackEnd.Enemys.Enemy;
+import BackEnd.Players.Player;
 import FrontEnd.Messages.DeathMessage;
 import FrontEnd.Messages.MessageCallback;
 import FrontEnd.Messages.PlacementCallBack;
@@ -21,6 +23,7 @@ public abstract class Unit extends Tile {
     public Integer HealthAmount;
     public Integer AttackPoints;
     public Integer DefensePoints;
+    protected Position position;
     private static Random l = (new Random());
 //creating the map for the moves,if up or down or left or right, a key will be there
 //    protected Map<Character, Supplier<Position>> clickOn = new HashMap<>(){
@@ -31,6 +34,14 @@ public abstract class Unit extends Tile {
 
     protected Unit(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
         super(tile);
+        this.Name = Name;
+        this.HealthPool = HealthPool;
+        this.HealthAmount = HealthAmount;
+        this.AttackPoints = AttackPoints;
+        this.DefensePoints = DefensePoints;
+    }
+    protected Unit(String Name,Position position, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
+        super(tile, position);
         this.Name = Name;
         this.HealthPool = HealthPool;
         this.HealthAmount = HealthAmount;
@@ -94,32 +105,37 @@ public String get_Name(){
         this.HealthAmount = value;
     }
 
+    public void interact(Tile t){
+        t.accept(this);
+    }
+    public boolean alive(){
+        return getCurrentHealth()>0;
+    }
+    public abstract void visit(Player p);
+    public abstract void visit(Enemy e);
+    public void set_Position(Position position){
+        this.position = position;
+    }
+    public void visit(Empty e){
+
+    }
+    protected void SwapPositions(Tile tile){
+        int resX = position.getX();
+        int resY = position.getY();
+position.set(tile.position.getX(),tile.position.getY());
+tile.position.set(resX,resY);
+    }
+
     /*
     // Should be automatically called once the unit finishes its turn
     public abstract void processStep();
 
 
     // This unit attempts to interact with another tile.
-    public void interact(Tile tile){
-		...
-    }
-
     public void visit(Empty e){
 		...
     }
-
-    public abstract void visit(Player p);
-    public abstract void visit(Enemy e);
-
-    // Combat against another unit.
-    protected void battle(Unit u){
-        ...
-    }
-
-
-    public String describe() {
-        return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttack(), getDefense());
-    }*/
+*/
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", get_Name(), getCurrentHealth(), getAttack(), getDefense());
     }
