@@ -1,5 +1,7 @@
 package BackEnd.Enemys;
 
+import BackEnd.Tiles.Unit;
+
 public class Enemy extends Unit {
     public Integer Experience;
 

@@ -1,5 +1,8 @@
 package BackEnd.Players;
 
+import BackEnd.Enemys.Enemy;
+import java.util.List;
+
 public class Warrior extends Player{
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
     Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
@@ -24,7 +27,10 @@ public class Warrior extends Player{
         this.remainingCooldown = this.remainingCooldown -1;
     }
 
-    public void abilityCasting(){ // Avenger's Shield
+    public void abilityCasting(Player player, List<Enemy> enemies){ // Avenger's Shield
+        if(super.HealthAmount == 0){
+
+        }
         remainingCooldown = abilityCooldown;
         super.HealthAmount = Math.min(super.HealthAmount + 10* super.DefensePoints, super.HealthPool);
     }
