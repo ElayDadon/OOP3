@@ -26,4 +26,24 @@ public void set(int x, int y){
     public int getY() {
         return y;
     }
+
+    public Position Up(){
+        return new Position(getX(), getY() - 1);
+    }
+
+    public Position Down(){
+        return new Position(getX(), getY() + 1);
+    }
+
+    public Position Left(){
+        return new Position(getX() - 1, getY());
+    }
+
+    public Position Right(){
+        return new Position(getX() + 1, getY());
+    }
+
+    public Position NoOperation(){
+        return new Position(getX() , getY());
+    }
 }

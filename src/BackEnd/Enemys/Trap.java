@@ -19,6 +19,7 @@ public class Trap extends Enemy{
         this.VisibilityTime = visibilityTime;
     }
 
+    @Override
     public void OnEnemyTurn(Player player){
         Visible=TicksCount<VisibilityTime;
         TicksCount = (TicksCount == (VisibilityTime + InvisibilityTime)) ? 0 : TicksCount + 1;
@@ -32,4 +33,13 @@ public class Trap extends Enemy{
         return (Visible) ? super.toString() : ".";
     }
 
+    @Override
+    public void visit(Player p) {
+
+    }
+
+    @Override
+    public void visit(Enemy e) {
+
+    }
 }
