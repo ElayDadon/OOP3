@@ -20,7 +20,7 @@ public class Rogue extends Player{
             super.LevelingUp();
             this.CurrentEnergy = 100;
             //ToDO: need t verify if we need to overwrite the super levelingup
-            super.AttackPoints = super.AttackPoints + 3*super.PlayerLevel;
+            AttackPoints = AttackPoints + 3*super.PlayerLevel;
         }
 
     }
