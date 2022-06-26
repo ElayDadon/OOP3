@@ -9,11 +9,16 @@ public class Warrior extends Player{
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
     Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
-    public Warrior(int abilityCooldown, char remainingCooldown)
+    public Warrior(Integer abilityCooldown, Integer remainingCooldown, String Name,
+                   char tile,
+                   Integer HealthPool,
+                   Integer HealthAmount,
+                   Integer AttackPoints,
+                   Integer DefensePoints)
     {
-        super();
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Avenger's Shield");
         this.abilityCooldown = abilityCooldown;
-        this.remainingCooldown = 0;
+        this.remainingCooldown = remainingCooldown;
     }
 
     public void levelingUpWarrior()
@@ -34,12 +39,14 @@ public class Warrior extends Player{
             remainingCooldown = abilityCooldown; // After casting ability, should wait again
             super.HealthAmount = Math.min(super.HealthAmount + 10* super.DefensePoints, super.HealthPool);
             List<Enemy> inRange = this.filterRange(enemies, MAX_RANGE);
+            messageCallback.send(String.format("%s cast %s healing for %d", get_Name(), super.ABILITY_NAME, super.HealthAmount));
             if(!inRange.isEmpty()){
                 Random rand = new Random();
                 Enemy e = inRange.get(rand.nextInt(inRange.size()));
-                e..HealthAmount =  e.HealthAmount - super.HealthPool/10;
+                e.HealthAmount =  e.HealthAmount - super.HealthPool/10;
             }
         } else {
+            messageCallback.send(String.format("%s tried to cast %s, but don't have enough resources", get_Name(),super.ABILITY_NAME));
             tickingGame();
         }
     }
