@@ -27,4 +27,17 @@ public class Mage extends Player{
             this.SpellPower = SpellPower + 10*super.PlayerLevel;
         }
     }
+
+    public void GameTick(){
+        this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama +1))*PlayerLevel;
+    }
+
+    public void AbilityCost(){
+        //TODO: need to implement
+        this.CurrentMama = this.CurrentMama - this.MamaCost;
+        Integer hits =0;
+        while ((hits < this.HitsCount) ){
+
+        }
+    }
 }

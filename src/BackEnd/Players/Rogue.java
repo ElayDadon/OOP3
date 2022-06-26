@@ -22,6 +22,14 @@ public class Rogue extends Player{
             //ToDO: need t verify if we need to overwrite the super levelingup
             AttackPoints = AttackPoints + 3*super.PlayerLevel;
         }
+    }
 
+    public void GameTick(){
+        this.CurrentEnergy = Math.min(this.CurrentEnergy+10, 100);
+    }
+
+    public void AbilityCast(){
+        this.CurrentEnergy = this.CurrentEnergy - this.Cost;
+        //TODO: need to implement
     }
 }
