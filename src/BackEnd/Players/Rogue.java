@@ -10,7 +10,7 @@ public class Rogue extends Player{
                   Integer HealthAmount,
                   Integer AttackPoints,
                   Integer DefensePoints, Integer Cost) {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, ability_name);
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Fan of Knives");
         this.Cost = Cost;
         this.CurrentEnergy = 100;
     }

@@ -13,6 +13,12 @@ public class Enemy extends Unit {
         this.Experience = Experience;
     }
 
+    public boolean isAlive(){
+        if(this.HealthAmount>0)
+            return true;
+        return false;
+    }
+
     @Override
     public void accept(Unit unit) {
 

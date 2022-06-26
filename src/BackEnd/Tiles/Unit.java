@@ -71,6 +71,14 @@ public String get_Name(){
 
     public abstract void onDeath();
 
+    public Integer getHealthAmount(){
+        return this.HealthAmount;
+    }
+
+    public void setHealthAmount(Integer value){
+        this.HealthAmount = value;
+    }
+
     /*
     // Should be automatically called once the unit finishes its turn
     public abstract void processStep();
