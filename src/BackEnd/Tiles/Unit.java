@@ -71,7 +71,7 @@ public String get_Name(){
         messageCallback.send(String.format("%s rolled %d attack points", get_Name(),(int)(attack)));
         return attack;
     }
-    protected Integer Defense(){
+    public Integer Defense(){
         Random rand = new Random();
         Integer upperBound = DefensePoints;
         Integer Defense = (Integer) (rand.nextInt(upperBound+1));

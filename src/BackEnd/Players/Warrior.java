@@ -44,6 +44,8 @@ public class Warrior extends Player{
                 Random rand = new Random();
                 Enemy e = inRange.get(rand.nextInt(inRange.size()));
                 e.HealthAmount =  e.HealthAmount - super.HealthPool/10;
+                if(e.isAlive())
+                    this.HealthAmount = this.HealthAmount - e.Defense();
             }
         } else {
             messageCallback.send(String.format("%s tried to cast %s, but don't have enough resources", get_Name(),super.ABILITY_NAME));

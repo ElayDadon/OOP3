@@ -56,6 +56,9 @@ public class Mage extends Player{
                 hits++;
                 if(!enemyAttack.isAlive())
                     EnemyInRange.remove(enemyAttack);
+                else{
+                    this.HealthAmount =  this.HealthAmount - enemyAttack.Defense();
+                }
             }
         }
         else {

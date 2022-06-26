@@ -38,6 +38,8 @@ public class Rogue extends Player{
             List<Enemy> EnemyInRange = super.filterRange(enemies, 2);
             for (Enemy enemy : enemies) {
                 enemy.HealthAmount = enemy.HealthAmount - super.AttackPoints;
+                if(enemy.isAlive())
+                    this.HealthAmount = this.HealthAmount - enemy.Defense();
             }
         }
         else{
