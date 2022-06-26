@@ -10,6 +10,10 @@ public abstract class Tile implements Comparable<BackEnd.Tiles.Tile> {
     protected Tile(char tile){
         this.tile = tile;
     }
+    protected Tile(char tile,Position position){
+        this.tile = tile;
+        this.position = position;
+    }
 
     protected void initialize(Position position){
         this.position = position;
