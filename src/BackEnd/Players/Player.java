@@ -14,26 +14,39 @@ public class Player extends Unit {
     public static final char PLAYER_TILE = '@';
 
 
-    public Player( int HealthPool, int HealthAmount, char tile)
+
+    public Player( String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints)
     {
-        super(tile);
-        this.experience = 0;
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
+        this.Experience = 0;
         this.PlayerLevel = 1;
     }
 
     public void LevelingUp()
     {
-        if (PlayerLevel * 50 <= experience){
-            experience =- PlayerLevel*50;
-            PlayerLevel ++;
-            HealthPool =+ 10 * PlayerLevel;
+        if (isLevelUp()) {
+            Experience = Experience-PlayerLevel * 50;
+            PlayerLevel++;
+            HealthPool = +10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints =+4 * PlayerLevel;
-            DefensePoints =+ PlayerLevel;
+            AttackPoints = +4 * PlayerLevel;
+            DefensePoints = +PlayerLevel;
         }
+    }
+
+    public boolean isLevelUp(){
+        if (PlayerLevel * 50 <= Experience)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void accept(Unit unit) {
+
     }
 
     public List<Enemy> filterRange(List<Enemy> enemies, int range){
         return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());
     }
+
 }

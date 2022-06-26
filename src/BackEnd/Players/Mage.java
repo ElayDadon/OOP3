@@ -1,5 +1,6 @@
 package BackEnd.Players;
 
+
 public class Mage extends Player{
     Integer ManaPool; //maximal value of mama
     Integer CurrentMama; //current amount of mama
@@ -19,7 +20,24 @@ public class Mage extends Player{
     }
 
     public void LevelingUp(){
-        //ToDO: player function
-        //this.ManaPool = ManaPool + 25*super.PlayerLevel;
+        if(isLevelUp()){
+            super.LevelingUp();
+            this.ManaPool = ManaPool + 25*super.PlayerLevel;
+            this.CurrentMama = Math.min(this.CurrentMama +this.ManaPool/4, this.ManaPool);
+            this.SpellPower = SpellPower + 10*super.PlayerLevel;
+        }
+    }
+
+    public void GameTick(){
+        this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama +1))*PlayerLevel;
+    }
+
+    public void AbilityCost(){
+        //TODO: need to implement
+        this.CurrentMama = this.CurrentMama - this.MamaCost;
+        Integer hits =0;
+        while ((hits < this.HitsCount) ){
+
+        }
     }
 }
