@@ -1,4 +1,5 @@
 package BackEnd.Tiles;
+import BackEnd.Boards.Movement;
 import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Players.Player;
@@ -14,7 +15,15 @@ import java.*;
 import java.util.function.Supplier;
 
 public abstract class Unit extends Tile {
-
+    protected Map<Character, Supplier<Position>> actionsMap = new HashMap<>(){
+        {
+            put(Movement.down, () -> getPosition().Down());
+            put(Movement.up, () -> getPosition().Up());
+            put(Movement.right, () -> getPosition().Right());
+            put(Movement.left, () -> getPosition().Left());
+            put(Movement.stay, () -> getPosition().NoOperation());
+        }
+    };
     public String Name;
     protected MessageCallback messageCallback;
     protected DeathMessage deathMessage;
@@ -25,12 +34,7 @@ public abstract class Unit extends Tile {
     public Integer DefensePoints;
     protected Position position;
     private static Random l = (new Random());
-//creating the map for the moves,if up or down or left or right, a key will be there
-//    protected Map<Character, Supplier<Position>> clickOn = new HashMap<>(){
-//        {
-//            put(Movement.down, () -> getPosition().Down());
-//        }
-//    };
+
 
     protected Unit(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
         super(tile);

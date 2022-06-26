@@ -54,4 +54,14 @@ public class Player extends Unit {
     public void onDeath() {
 
     }
+
+    @Override
+    public void visit(Player p) {
+
+    }
+
+    @Override
+    public void visit(Enemy e) {
+
+    }
 }

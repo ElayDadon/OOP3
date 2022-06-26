@@ -1,11 +1,14 @@
 package BackEnd.Enemys;
 
+import BackEnd.Players.Player;
 import BackEnd.Tiles.Unit;
 
 import BackEnd.Tiles.Unit;
 import FrontEnd.Messages.DeathMessage;
 
-public class Enemy extends Unit {
+import java.util.List;
+
+public abstract class Enemy extends Unit {
     public Integer Experience;
 
     protected Enemy(String Name,char tile,Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer Experience) {
@@ -26,4 +29,6 @@ public class Enemy extends Unit {
     public void onDeath() {
         deathMessage.show();
     }
+
+    public abstract void OnEnemyTurn(Player player);
 }
