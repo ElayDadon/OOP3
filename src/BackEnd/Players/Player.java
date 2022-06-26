@@ -8,16 +8,9 @@ public class Player extends Unit {
 
 
 
-    public Player(int Experience, int PlayerLevel, int HealthPool, int HealthAmount)
+    public Player( int HealthPool, int HealthAmount, char tile)
     {
-        super();
-        this.Experience = Experience;
-        this.PlayerLevel = PlayerLevel;
-    }
-
-    public Player()
-    {
-        //super();
+        super(tile);
         this.Experience = 0;
         this.PlayerLevel = 1;
     }

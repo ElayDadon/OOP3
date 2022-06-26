@@ -3,13 +3,13 @@ package BackEnd.Boards;
 public abstract class Tile implements Comparable<Tile> {
 
     protected char tile;
-   /* protected Position position;
+    //protected Position position;
 
     protected Tile(char tile){
         this.tile = tile;
     }
 
-    protected void initialize(Position position){
+   /* protected void initialize(Position position){
         this.position = position;
     }
 
