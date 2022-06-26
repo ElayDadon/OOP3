@@ -1,8 +1,8 @@
-package BackEnd.Boards;
+package BackEnd.Tiles;
 
-import BackEnd.Unit;
+import BackEnd.Boards.Position;
 
-public abstract class Tile implements Comparable<Tile> {
+public abstract class Tile implements Comparable<BackEnd.Tiles.Tile> {
 
     protected char tile;
     protected Position position;
@@ -30,7 +30,7 @@ public abstract class Tile implements Comparable<Tile> {
     public abstract void accept(Unit unit);
 
     @Override
-    public int compareTo(Tile tile) {
+    public int compareTo(BackEnd.Tiles.Tile tile) {
         return getPosition().compareTo(tile.getPosition());
     }
 
@@ -45,3 +45,4 @@ public abstract class Tile implements Comparable<Tile> {
     }
 
 }
+
