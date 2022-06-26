@@ -2,23 +2,29 @@ package BackEnd;
 
 import BackEnd.Boards.Tile;
 
-public class Unit extends Tile {
+public abstract class Unit extends Tile {
 
     public String Name;
-    public int HealthPool;
-    public int HealthAmount;
-    public int AttackPoints;
-    public int DefensePoints;
+    public Integer HealthPool;
+    public Integer HealthAmount;
+    public Integer AttackPoints;
+    public Integer DefensePoints;
 
-    protected Unit(char tile, int HealthPool, int HealthAmount, int AttackPoints, int DefensePoints) {
+    protected Unit(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
         super(tile);
+        this.Name = Name;
         this.HealthPool = HealthPool;
         this.HealthAmount = HealthAmount;
         this.AttackPoints = AttackPoints;
         this.DefensePoints = DefensePoints;
     }
+
+    @Override
+    public int compareTo(Tile tile) {
+        return 0;
+    }
 /*
-    protected Unit(char tile, String name, int healthCapacity, int attack, int defense) {
+    protected Unit(char tile, String name, Integer healthCapacity, Integer attack, Integer defense) {
         super(tile);
         ...
     }
@@ -27,11 +33,11 @@ public class Unit extends Tile {
         ...
     }
 
-    protected int attack(){
+    protected Integer attack(){
 		...
     }
 
-    public int defend(){
+    public Integer defend(){
         ...
     }
 
@@ -63,8 +69,5 @@ public class Unit extends Tile {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttack(), getDefense());
     }*/
 
-    @Override
-    public int compareTo(Tile o) {
-        return 0;
-    }
+
 }

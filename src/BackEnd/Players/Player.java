@@ -3,14 +3,14 @@ package BackEnd.Players;
 import BackEnd.Unit;
 
 public class Player extends Unit {
-    protected int Experience;  // Increased by killing enemies
-    protected int PlayerLevel; // Increased When Experience reached to 50 X level
+    protected Integer Experience;  // Increased by killing enemies
+    protected Integer PlayerLevel; // Increased When Experience reached to 50 X level
 
 
 
-    public Player( int HealthPool, int HealthAmount, char tile)
+    public Player( String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints)
     {
-        super(tile);
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
         this.Experience = 0;
         this.PlayerLevel = 1;
     }

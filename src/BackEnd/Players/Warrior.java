@@ -4,9 +4,15 @@ public class Warrior extends Player{
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
     Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
-    public Warrior(int abilityCooldown, char tile)
+    public Warrior(String Name,
+                   char tile,
+                   Integer HealthPool,
+                   Integer HealthAmount,
+                   Integer AttackPoints,
+                   Integer DefensePoints,
+                   int abilityCooldown)
     {
-        super(tile);
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
         this.abilityCooldown = abilityCooldown;
         this.remainingCooldown = 0;
     }

@@ -6,11 +6,12 @@ public class Trap extends Enemy{
     public Integer TicksCount;
     public boolean Visible;
 
-    public Trap(int invisibilityTime, int visibilityTime)
+    public Trap(String Name,char tile,Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer Experience,Integer invisibilityTime, Integer visibilityTime)
     {
-        Visible = true;
-        TicksCount = 0;
-        InvisibilityTime = invisibilityTime;
-        VisibilityTime = visibilityTime;
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,Experience);
+        this.Visible = true;
+        this.TicksCount = 0;
+        this.InvisibilityTime = invisibilityTime;
+        this.VisibilityTime = visibilityTime;
     }
 }
