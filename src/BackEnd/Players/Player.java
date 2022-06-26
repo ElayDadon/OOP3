@@ -49,4 +49,8 @@ public class Player extends Unit {
         return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());
     }
 
+    @Override
+    public void onDeath() {
+
+    }
 }

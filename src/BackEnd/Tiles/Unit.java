@@ -1,12 +1,33 @@
 package BackEnd.Tiles;
+import BackEnd.Boards.Position;
+import FrontEnd.Messages.DeathMessage;
+import FrontEnd.Messages.MessageCallback;
+import FrontEnd.Messages.PlacementCallBack;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import java.*;
+import java.util.function.Supplier;
 
 public abstract class Unit extends Tile {
 
     public String Name;
+    protected MessageCallback messageCallback;
+    protected DeathMessage deathMessage;
+    protected PlacementCallBack placementCallBack;
     public Integer HealthPool;
     public Integer HealthAmount;
     public Integer AttackPoints;
     public Integer DefensePoints;
+    private static Random l = (new Random());
+//creating the map for the moves,if up or down or left or right, a key will be there
+//    protected Map<Character, Supplier<Position>> clickOn = new HashMap<>(){
+//        {
+//            put(Movement.down, () -> getPosition().Down());
+//        }
+//    };
 
     protected Unit(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
         super(tile);
@@ -16,34 +37,44 @@ public abstract class Unit extends Tile {
         this.AttackPoints = AttackPoints;
         this.DefensePoints = DefensePoints;
     }
-
-    @Override
-    public int compareTo(Tile tile) {
-        return 0;
+public String get_Name(){
+        return Name;
     }
-/*
-    protected Unit(char tile, String name, Integer healthCapacity, Integer attack, Integer defense) {
-        super(tile);
-        ...
+    public Integer getMaxHealth(){
+        return HealthPool;
     }
-
-    protected void initialize(Position position, MessageCallback messageCallback){
-        ...
+    public Integer getCurrentHealth(){
+        return HealthAmount;
     }
 
+    protected void initialize(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
+        super.initialize(position);
+        this.deathMessage = deathMessage;
+        this.messageCallback = messageCallback;
+        this.placementCallBack = placementCallBack;
+    }
     protected Integer attack(){
-		...
+		Random rand = new Random();
+        Integer upperBound = AttackPoints;
+        Integer attack = (Integer) (rand.nextInt(upperBound+1));
+        return attack;
+    }
+    protected Integer Defense(){
+        Random rand = new Random();
+        Integer upperBound = DefensePoints;
+        Integer Defense = (Integer) (rand.nextInt(upperBound+1));
+        return Defense;
     }
 
-    public Integer defend(){
-        ...
-    }
+    public Integer getAttack(){return AttackPoints;}
+    public Integer getDefense(){return DefensePoints;}
 
+    public abstract void onDeath();
+
+    /*
     // Should be automatically called once the unit finishes its turn
     public abstract void processStep();
 
-    // What happens when the unit dies
-    public abstract void onDeath();
 
     // This unit attempts to interact with another tile.
     public void interact(Tile tile){
