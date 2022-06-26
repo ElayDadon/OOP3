@@ -15,20 +15,23 @@ public class Player extends Unit {
         this.PlayerLevel = 1;
     }
 
-    public boolean LevelingUp()
+    public void LevelingUp()
     {
-        if (PlayerLevel * 50 <= Experience){
-            Experience =- PlayerLevel*50;
-            PlayerLevel ++;
-            HealthPool =+ 10 * PlayerLevel;
+        if (isLevelUp()) {
+            Experience = Experience-PlayerLevel * 50;
+            PlayerLevel++;
+            HealthPool = +10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints =+4 * PlayerLevel;
-            DefensePoints =+ PlayerLevel;
-            return true;
+            AttackPoints = +4 * PlayerLevel;
+            DefensePoints = +PlayerLevel;
         }
-        return false;
     }
 
+    public boolean isLevelUp(){
+        if (PlayerLevel * 50 <= Experience)
+            return true;
+        return false;
+    }
     @Override
     public void accept(Unit unit) {
 

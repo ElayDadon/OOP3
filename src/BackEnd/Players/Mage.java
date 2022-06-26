@@ -20,9 +20,8 @@ public class Mage extends Player{
     }
 
     public void LevelingUp(){
-        //ToDO: player function
-        boolean isLevelingUp = super.LevelingUp();
-        if(isLevelingUp){
+        if(isLevelUp()){
+            super.LevelingUp();
             this.ManaPool = ManaPool + 25*super.PlayerLevel;
             this.CurrentMama = Math.min(this.CurrentMama +this.ManaPool/4, this.ManaPool);
             this.SpellPower = SpellPower + 10*super.PlayerLevel;
