@@ -1,15 +1,17 @@
 package BackEnd.Boards;
 
+import BackEnd.Unit;
+
 public abstract class Tile implements Comparable<Tile> {
 
     protected char tile;
-    //protected Position position;
+    protected Position position;
 
     protected Tile(char tile){
         this.tile = tile;
     }
 
-   /* protected void initialize(Position position){
+    protected void initialize(Position position){
         this.position = position;
     }
 
@@ -40,6 +42,6 @@ public abstract class Tile implements Comparable<Tile> {
     public double Range(Position other_position)
     {
         return Math.sqrt(Math.pow(other_position.getX() - position.getX(), 2) + Math.pow(other_position.getY() - position.getY(), 2));
-    }*/
+    }
 
 }
