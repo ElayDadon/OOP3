@@ -1,5 +1,6 @@
 package BackEnd.Enemys;
 
+import BackEnd.Players.Player;
 import BackEnd.Tiles.Unit;
 
 import BackEnd.Tiles.Unit;
@@ -25,5 +26,15 @@ public class Enemy extends Unit {
     @Override
     public void onDeath() {
         deathMessage.show();
+    }
+
+    @Override
+    public void visit(Player p) {
+
+    }
+
+    @Override
+    public void visit(Enemy e) {
+
     }
 }
