@@ -48,11 +48,11 @@ public class Mage extends Player{
         if(canCostTheAbility()){
             this.CurrentMama = this.CurrentMama - this.MamaCost;
             Integer hits =0;
-            List<Enemy> EnemyInRange;
+            List<Enemy> EnemyInRange = super.filterRange(enemies,this.AbilityRange);
             Random rand = new Random();
             while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
                 Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
-                //enemyAttack.HealthAmount;
+                enemyAttack.HealthAmount = enemyAttack.HealthAmount;
                 hits++;
             }
         }
