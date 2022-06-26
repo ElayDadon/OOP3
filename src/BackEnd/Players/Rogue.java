@@ -1,5 +1,5 @@
 package BackEnd.Players;
 
-public class Rogue {
+public class Rogue extends Player{
 
 }

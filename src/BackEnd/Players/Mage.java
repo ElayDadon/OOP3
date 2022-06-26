@@ -1,4 +1,26 @@
 package BackEnd.Players;
 
-public class Mage {
+public class Mage extends Player{
+    Integer ManaPool; //maximal value of mama
+    Integer CurrentMama; //current amount of mama
+    Integer MamaCost; // ability cost
+    Integer SpellPower; // ability scale factor
+    Integer HitsCount; // maximal numbers of times a single cast can hit
+    Integer AbilityRange;
+
+    public  Mage(Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
+        //ToDO: add player constractor
+        super();
+        this.ManaPool = ManaPool;
+        this.CurrentMama = this.ManaPool/4;
+        this.MamaCost = MamaCost;
+        this.SpellPower = SpellPower;
+        this.HitsCount = HitsCount;
+        this.AbilityRange = AbilityRange;
+    }
+
+    public void LevelingUp(){
+        //ToDO: player function
+        //this.ManaPool = ManaPool + 25*super.PlayerLevel;
+    }
 }
