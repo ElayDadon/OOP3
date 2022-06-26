@@ -19,10 +19,10 @@ public class Player extends Unit {
         if (isLevelUp()) {
             Experience = Experience-PlayerLevel * 50;
             PlayerLevel++;
-            HealthPool = +10 * PlayerLevel;
+            HealthPool = HealthPool +10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints = +4 * PlayerLevel;
-            DefensePoints = +PlayerLevel;
+            AttackPoints = AttackPoints +4 * PlayerLevel;
+            DefensePoints = DefensePoints +PlayerLevel;
         }
     }
 

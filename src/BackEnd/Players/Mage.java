@@ -3,7 +3,7 @@ package BackEnd.Players;
 
 import BackEnd.Enemys.Enemy;
 
-import java.util.List;
+import java.util.*;
 
 public class Mage extends Player{
     Integer ManaPool; //maximal value of mama
@@ -48,7 +48,17 @@ public class Mage extends Player{
         if(canCostTheAbility()){
             this.CurrentMama = this.CurrentMama - this.MamaCost;
             Integer hits =0;
-            //while ((hits < this.HitsCount) )
+            List<Enemy> EnemyInRange;
+            Random rand = new Random();
+            while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
+                Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
+                //enemyAttack.HealthAmount;
+                hits++;
+            }
         }
+        else {
+            //TODO: send  message with an error
+        }
+
     }
 }
