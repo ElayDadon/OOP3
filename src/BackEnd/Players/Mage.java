@@ -2,7 +2,6 @@ package BackEnd.Players;
 
 import FrontEnd.Messages.MessageCallback;
 import BackEnd.Enemys.Enemy;
-
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -44,7 +43,7 @@ public class Mage extends Player{
         return false;
     }
 
-    public void AbilityCast(Player player, List<Enemy> enemies){
+    public void AbilityCast(List<Enemy> enemies){
         //TODO: need to implement
         if(canCostTheAbility()){
             this.CurrentMama = this.CurrentMama - this.MamaCost;
@@ -53,13 +52,14 @@ public class Mage extends Player{
             Random rand = new Random();
             while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
                 Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
-                enemyAttack.setHealthAmount(enemyAttack.getHealthAmount()-this.SpellPower);
+                enemyAttack.HealthAmount = enemyAttack.HealthAmount - this.SpellPower;
                 hits++;
                 if(!enemyAttack.isAlive())
                     EnemyInRange.remove(enemyAttack);
             }
         }
         else {
+            GameTick();
             String msg = MessageFormat.format("{0} does not have enough Mama to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

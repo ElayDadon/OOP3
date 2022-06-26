@@ -101,14 +101,6 @@ public String get_Name(){
         this.HealthAmount = i;
     }
 
-    public Integer getHealthAmount(){
-        return this.HealthAmount;
-    }
-
-    public void setHealthAmount(Integer value){
-        this.HealthAmount = value;
-    }
-
     public void interact(Tile t){
         t.accept(this);
     }
