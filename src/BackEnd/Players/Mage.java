@@ -1,6 +1,10 @@
 package BackEnd.Players;
 
 
+import BackEnd.Enemys.Enemy;
+
+import java.util.List;
+
 public class Mage extends Player{
     Integer ManaPool; //maximal value of mama
     Integer CurrentMama; //current amount of mama
@@ -32,12 +36,19 @@ public class Mage extends Player{
         this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama +1))*PlayerLevel;
     }
 
-    public void AbilityCost(){
-        //TODO: need to implement
-        this.CurrentMama = this.CurrentMama - this.MamaCost;
-        Integer hits =0;
-        while ((hits < this.HitsCount) ){
+    //Mage can't use the ability if mama cost > current mama
+    private boolean canCostTheAbility(){
+        if(this.CurrentMama > this.MamaCost)
+            return true;
+        return false;
+    }
 
+    public void AbilityCast(Player player, List<Enemy> enemies){
+        //TODO: need to implement
+        if(canCostTheAbility()){
+            this.CurrentMama = this.CurrentMama - this.MamaCost;
+            Integer hits =0;
+            //while ((hits < this.HitsCount) )
         }
     }
 }
