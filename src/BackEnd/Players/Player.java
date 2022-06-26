@@ -1,23 +1,31 @@
 package BackEnd.Players;
+
+import BackEnd.Enemys.Enemy;
 import BackEnd.Tiles.Unit;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Player extends Unit {
-    protected Integer Experience;  // Increased by killing enemies
-    protected Integer PlayerLevel; // Increased When Experience reached to 50 X level
+    protected int experience = 0;  // Increased by killing enemies
+    protected int PlayerLevel; // Increased When Experience reached to 50 X level
+    protected final String ABILITY_NAME;
+    public static final char PLAYER_TILE = '@';
 
 
 
-    public Player( String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints)
+    public Player(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, String ability_name)
     {
         super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
-        this.Experience = 0;
+        ABILITY_NAME = ability_name;
+        this.experience = 0;
         this.PlayerLevel = 1;
     }
 
     public void LevelingUp()
     {
         if (isLevelUp()) {
-            Experience = Experience-PlayerLevel * 50;
+            experience = experience-PlayerLevel * 50;
             PlayerLevel++;
             HealthPool = HealthPool +10 * PlayerLevel;
             HealthAmount = HealthPool;
@@ -27,12 +35,22 @@ public class Player extends Unit {
     }
 
     public boolean isLevelUp(){
-        if (PlayerLevel * 50 <= Experience)
+        if (PlayerLevel * 50 <= experience)
             return true;
         return false;
     }
+
     @Override
     public void accept(Unit unit) {
+
+    }
+
+    public List<Enemy> filterRange(List<Enemy> enemies, int range){
+        return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());
+    }
+
+    @Override
+    public void onDeath() {
 
     }
 }

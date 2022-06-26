@@ -2,6 +2,9 @@ package BackEnd.Enemys;
 
 import BackEnd.Tiles.Unit;
 
+import BackEnd.Tiles.Unit;
+import FrontEnd.Messages.DeathMessage;
+
 public class Enemy extends Unit {
     public Integer Experience;
 
@@ -13,5 +16,10 @@ public class Enemy extends Unit {
     @Override
     public void accept(Unit unit) {
 
+    }
+
+    @Override
+    public void onDeath() {
+        deathMessage.show();
     }
 }

@@ -14,7 +14,7 @@ public class Mage extends Player{
     Integer AbilityRange;
 
     public Mage(String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, ability_name);
         this.ManaPool = ManaPool;
         this.CurrentMama = this.ManaPool/4;
         this.MamaCost = MamaCost;
