@@ -59,16 +59,6 @@ public class Player extends Unit {
     }
 
     @Override
-    public void visit(Player p) {
-
-    }
-
-    @Override
-    public void visit(Enemy e) {
-
-    }
-
-    @Override
     public void visit(Player p) {}
 
     @Override
