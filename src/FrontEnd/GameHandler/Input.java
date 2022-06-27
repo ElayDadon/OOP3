@@ -1,5 +1,4 @@
 package FrontEnd.GameHandler;
-import java.*;
 import java.util.Scanner;
 
 public class Input {
