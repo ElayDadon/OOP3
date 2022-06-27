@@ -9,12 +9,14 @@ public class Warrior extends Player{
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
     public Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
-    public Warrior(Integer abilityCooldown, Integer remainingCooldown, String Name,
+    public Warrior(String Name,
                    char tile,
                    Integer HealthPool,
                    Integer HealthAmount,
                    Integer AttackPoints,
-                   Integer DefensePoints)
+                   Integer DefensePoints,
+                    Integer abilityCooldown,
+                   Integer remainingCooldown)
     {
         super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Avenger's Shield");
         this.abilityCooldown = abilityCooldown;
@@ -25,9 +27,9 @@ public class Warrior extends Player{
     {
         super.LevelingUp();
         this.remainingCooldown = 0;
-        super.HealthPool =+ 5* super.HealthPool;
-        super.AttackPoints =+ 2* super.PlayerLevel;
-        super.DefensePoints =+ super.DefensePoints;
+        super.HealthPool += 5* super.PlayerLevel;
+        super.AttackPoints += 2* super.PlayerLevel;
+        super.DefensePoints += super.PlayerLevel;
     }
 
     public void tickingGame(){

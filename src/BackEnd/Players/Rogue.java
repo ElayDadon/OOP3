@@ -6,7 +6,7 @@ import java.text.MessageFormat;
 
 public class Rogue extends Player{
     Integer Cost;
-    Integer CurrentEnergy;
+    public Integer CurrentEnergy;
 
     public Rogue( String Name,
                   char tile,
@@ -24,7 +24,7 @@ public class Rogue extends Player{
             super.LevelingUp();
             this.CurrentEnergy = 100;
             //ToDO: need t verify if we need to overwrite the super levelingup
-            AttackPoints = AttackPoints + 3*super.PlayerLevel;
+            AttackPoints += 3*super.PlayerLevel;
         }
     }
 
@@ -34,12 +34,12 @@ public class Rogue extends Player{
 
     public void AbilityCast(List<Enemy> enemies){
         if(this.CurrentEnergy>= this.Cost) {
-            this.CurrentEnergy = this.CurrentEnergy - this.Cost;
+            this.CurrentEnergy -= this.Cost;
             List<Enemy> EnemyInRange = super.filterRange(enemies, 2);
             for (Enemy enemy : enemies) {
-                enemy.HealthAmount = enemy.HealthAmount - super.AttackPoints;
+                enemy.HealthAmount -=  super.AttackPoints;
                 if(enemy.isAlive())
-                    this.HealthAmount = this.HealthAmount - enemy.Defense();
+                    this.HealthAmount -= enemy.Defense();
             }
         }
         else{
