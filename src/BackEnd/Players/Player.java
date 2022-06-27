@@ -2,6 +2,7 @@ package BackEnd.Players;
 
 import BackEnd.Enemys.Enemy;
 import BackEnd.Tiles.Unit;
+import FrontEnd.Messages.MessageCallback;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ public class Player extends Unit {
     public Integer PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
     public static final char PLAYER_TILE = '@';
+    MessageCallback messageCallback;
 
 
 
@@ -31,6 +33,7 @@ public class Player extends Unit {
             HealthAmount = HealthPool;
             AttackPoints = AttackPoints +4 * PlayerLevel;
             DefensePoints = DefensePoints +PlayerLevel;
+            messageCallback.send(String.format("{0} leveling up to {1}",Name,PlayerLevel));
         }
     }
 
@@ -52,7 +55,7 @@ public class Player extends Unit {
 
     @Override
     public void onDeath() {
-
+        messageCallback.send("You lost.");
     }
 
     @Override
