@@ -17,6 +17,7 @@ public class Monster extends Enemy{
         this.vision_range = vision_range;
     }
 
+    //TODO : why on hide?
     @Override
     public void OnEnemyTurn(Player player){
 //            if (player.Range(this.position) < vision_range) {
@@ -42,4 +43,6 @@ public class Monster extends Enemy{
     public void visit(Enemy e) {
 
     }
+
+
 }

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TrapTest {
 
-    //Monster details:
+    //Trap details:
     String TrapName = "Bonus Trap";
     char TrapTile = 'B';
     Integer HealthPool = 1;
@@ -36,9 +36,12 @@ class TrapTest {
     }
 
     @org.junit.jupiter.api.Test
-     void testToString() {
+     void testToString() throws Exception {
+        trap.TicksCount =3;
+        if(trap.toString().equals(trap.getTile()))
+            throw new Exception("toString failed");
     }
-
+    //TODO: to implement
     @org.junit.jupiter.api.Test
     void visit() {
     }
