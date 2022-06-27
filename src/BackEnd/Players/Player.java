@@ -27,12 +27,12 @@ public class Player extends Unit {
     public void LevelingUp()
     {
         if (isLevelUp()) {
-            experience = experience-PlayerLevel * 50;
+            experience -= PlayerLevel * 50;
             PlayerLevel++;
-            HealthPool = HealthPool +10 * PlayerLevel;
+            HealthPool += 10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints = AttackPoints +4 * PlayerLevel;
-            DefensePoints = DefensePoints +PlayerLevel;
+            AttackPoints += 4 * PlayerLevel;
+            DefensePoints += PlayerLevel;
             messageCallback.send(String.format("{0} leveling up to {1}",Name,PlayerLevel));
         }
     }
