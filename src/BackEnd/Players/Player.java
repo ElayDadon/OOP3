@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Player extends Unit {
     protected int experience = 0;  // Increased by killing enemies
-    protected int PlayerLevel; // Increased When Experience reached to 50 X level
+    public int PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
     public static final char PLAYER_TILE = '@';
 

@@ -13,7 +13,7 @@ class TrapTest {
     }
 
     @org.junit.jupiter.api.Test
-    void testToString() {
+     void testToString() {
     }
 
     @org.junit.jupiter.api.Test
