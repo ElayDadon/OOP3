@@ -1,9 +1,15 @@
 package Tests;
 
+import BackEnd.Enemys.Enemy;
+import BackEnd.Enemys.Monster;
 import BackEnd.Players.Player;
+import FrontEnd.Messages.MessageCallback;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +23,18 @@ class PlayerTest {
     Integer AttackPoints = 5;
     Integer DefensePoints = 1;
     private Player player;
+
+    //Monster details:
+    String MonsterName = "Wright";
+    char MonsterTile = 'z';
+    Integer HealthPoolMonster = 600;
+    Integer HealthAmountMonster = 600;
+    Integer AttackPointsMonster = 30;
+    Integer DefensePointsMonster = 15;
+    Integer ExperienceMonster = 100;
+    Integer visionRange = 3;
+    private Enemy Monster;
+
     @BeforeEach
     void setUp() {
         player = new Player(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"PlayerTesting");
@@ -52,10 +70,16 @@ class PlayerTest {
 
     @Test
     void filterRange() {
+        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        List<Enemy> enemies = new LinkedList<Enemy>();
+        enemies.add(m);
+        player.filterRange(enemies,5);
+        //TODO: position is missing in constructor
     }
 
     @Test
     void onDeath() {
+        //TODO:
     }
 
     @Test
