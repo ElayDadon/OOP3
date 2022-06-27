@@ -2,15 +2,17 @@ package BackEnd.Players;
 
 import BackEnd.Enemys.Enemy;
 import BackEnd.Tiles.Unit;
+import FrontEnd.Messages.MessageCallback;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Player extends Unit {
-    protected int experience = 0;  // Increased by killing enemies
-    protected int PlayerLevel; // Increased When Experience reached to 50 X level
+    public Integer experience = 0;  // Increased by killing enemies
+    public Integer PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
     public static final char PLAYER_TILE = '@';
+    MessageCallback messageCallback;
 
 
 
@@ -25,12 +27,13 @@ public class Player extends Unit {
     public void LevelingUp()
     {
         if (isLevelUp()) {
-            experience = experience-PlayerLevel * 50;
+            experience -= PlayerLevel * 50;
             PlayerLevel++;
-            HealthPool = HealthPool +10 * PlayerLevel;
+            HealthPool += 10 * PlayerLevel;
             HealthAmount = HealthPool;
-            AttackPoints = AttackPoints +4 * PlayerLevel;
-            DefensePoints = DefensePoints +PlayerLevel;
+            AttackPoints += 4 * PlayerLevel;
+            DefensePoints += PlayerLevel;
+            messageCallback.send(String.format("{0} leveling up to {1}",Name,PlayerLevel));
         }
     }
 
@@ -52,6 +55,16 @@ public class Player extends Unit {
 
     @Override
     public void onDeath() {
+        messageCallback.send("You lost.");
+    }
+
+    @Override
+    public void visit(Player p) {
+
+    }
+
+    @Override
+    public void visit(Enemy e) {
 
     }
 

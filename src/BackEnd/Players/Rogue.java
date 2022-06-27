@@ -1,8 +1,12 @@
 package BackEnd.Players;
 
+import BackEnd.Enemys.Enemy;
+import java.util.List;
+import java.text.MessageFormat;
+
 public class Rogue extends Player{
     Integer Cost;
-    Integer CurrentEnergy;
+    public Integer CurrentEnergy;
 
     public Rogue( String Name,
                   char tile,
@@ -20,7 +24,7 @@ public class Rogue extends Player{
             super.LevelingUp();
             this.CurrentEnergy = 100;
             //ToDO: need t verify if we need to overwrite the super levelingup
-            AttackPoints = AttackPoints + 3*super.PlayerLevel;
+            AttackPoints += 3*super.PlayerLevel;
         }
     }
 
@@ -28,8 +32,20 @@ public class Rogue extends Player{
         this.CurrentEnergy = Math.min(this.CurrentEnergy+10, 100);
     }
 
-    public void AbilityCast(){
-        this.CurrentEnergy = this.CurrentEnergy - this.Cost;
-        //TODO: need to implement
+    public void AbilityCast(List<Enemy> enemies){
+        if(this.CurrentEnergy>= this.Cost) {
+            this.CurrentEnergy -= this.Cost;
+            List<Enemy> EnemyInRange = super.filterRange(enemies, 2);
+            for (Enemy enemy : enemies) {
+                enemy.HealthAmount -=  super.AttackPoints;
+                if(enemy.isAlive())
+                    this.HealthAmount -= enemy.Defense();
+            }
+        }
+        else{
+            GameTick();
+            String msg = MessageFormat.format("{0} does not have enough Energy to use the ability.", super.get_Name());
+            messageCallback.send(msg);
+        }
     }
 }

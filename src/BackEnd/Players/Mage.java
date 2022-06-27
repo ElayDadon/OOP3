@@ -2,16 +2,15 @@ package BackEnd.Players;
 
 import FrontEnd.Messages.MessageCallback;
 import BackEnd.Enemys.Enemy;
-
 import java.text.MessageFormat;
 import java.util.*;
 
 public class Mage extends Player{
-    Integer ManaPool; //maximal value of mama
-    Integer CurrentMama; //current amount of mama
-    Integer MamaCost; // ability cost
-    Integer SpellPower; // ability scale factor
-    Integer HitsCount; // maximal numbers of times a single cast can hit
+    public Integer ManaPool; //maximal value of mama
+    public Integer CurrentMama; //current amount of mama
+    public Integer MamaCost; // ability cost
+    public Integer SpellPower; // ability scale factor
+    public Integer HitsCount; // maximal numbers of times a single cast can hit
     Integer AbilityRange;
 
     public Mage(String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
@@ -27,14 +26,14 @@ public class Mage extends Player{
     public void LevelingUp(){
         if(isLevelUp()){
             super.LevelingUp();
-            this.ManaPool = ManaPool + 25*super.PlayerLevel;
+            this.ManaPool += 25*super.PlayerLevel;
             this.CurrentMama = Math.min(this.CurrentMama +this.ManaPool/4, this.ManaPool);
-            this.SpellPower = SpellPower + 10*super.PlayerLevel;
+            this.SpellPower += 10*super.PlayerLevel;
         }
     }
 
     public void GameTick(){
-        this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama +1))*PlayerLevel;
+        this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama+this.PlayerLevel ));
     }
 
     //Mage can't use the ability if mama cost > current mama
@@ -44,22 +43,26 @@ public class Mage extends Player{
         return false;
     }
 
-    public void AbilityCast(Player player, List<Enemy> enemies){
+    public void AbilityCast(List<Enemy> enemies){
         //TODO: need to implement
         if(canCostTheAbility()){
-            this.CurrentMama = this.CurrentMama - this.MamaCost;
+            this.CurrentMama -= this.MamaCost;
             Integer hits =0;
             List<Enemy> EnemyInRange = super.filterRange(enemies,this.AbilityRange);
             Random rand = new Random();
             while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
                 Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
-                enemyAttack.setHealthAmount(enemyAttack.getHealthAmount()-this.SpellPower);
+                enemyAttack.HealthAmount -= this.SpellPower;
                 hits++;
                 if(!enemyAttack.isAlive())
                     EnemyInRange.remove(enemyAttack);
+                else{
+                    this.HealthAmount -= enemyAttack.Defense();
+                }
             }
         }
         else {
+            GameTick();
             String msg = MessageFormat.format("{0} does not have enough Mama to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

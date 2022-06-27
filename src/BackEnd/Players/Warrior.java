@@ -7,14 +7,16 @@ import java.util.Random;
 public class Warrior extends Player{
     public static final int MAX_RANGE = 3;
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
-    Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
+    public Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
-    public Warrior(Integer abilityCooldown, Integer remainingCooldown, String Name,
+    public Warrior(String Name,
                    char tile,
                    Integer HealthPool,
                    Integer HealthAmount,
                    Integer AttackPoints,
-                   Integer DefensePoints)
+                   Integer DefensePoints,
+                    Integer abilityCooldown,
+                   Integer remainingCooldown)
     {
         super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Avenger's Shield");
         this.abilityCooldown = abilityCooldown;
@@ -25,9 +27,9 @@ public class Warrior extends Player{
     {
         super.LevelingUp();
         this.remainingCooldown = 0;
-        super.HealthPool =+ 5* super.HealthPool;
-        super.AttackPoints =+ 2* super.PlayerLevel;
-        super.DefensePoints =+ super.DefensePoints;
+        super.HealthPool += 5* super.PlayerLevel;
+        super.AttackPoints += 2* super.PlayerLevel;
+        super.DefensePoints += super.PlayerLevel;
     }
 
     public void tickingGame(){
@@ -44,6 +46,8 @@ public class Warrior extends Player{
                 Random rand = new Random();
                 Enemy e = inRange.get(rand.nextInt(inRange.size()));
                 e.HealthAmount =  e.HealthAmount - super.HealthPool/10;
+                if(e.isAlive())
+                    this.HealthAmount = this.HealthAmount - e.Defense();
             }
         } else {
             messageCallback.send(String.format("%s tried to cast %s, but don't have enough resources", get_Name(),super.ABILITY_NAME));
