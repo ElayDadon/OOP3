@@ -7,7 +7,7 @@ import java.util.Random;
 public class Warrior extends Player{
     public static final int MAX_RANGE = 3;
     Integer abilityCooldown; // number of game ticks required to pass before using the ability.
-    Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
+    public Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
     public Warrior(Integer abilityCooldown, Integer remainingCooldown, String Name,
                    char tile,
