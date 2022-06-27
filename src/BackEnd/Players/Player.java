@@ -54,4 +54,18 @@ public class Player extends Unit {
     public void onDeath() {
 
     }
+
+    @Override
+    public void visit(Player p) {}
+
+    @Override
+    public void visit(Enemy e) {
+        super.battle(e);
+        if(!e.alive()){
+            experience += e.Experience;
+            while(this.isLevelUp())
+                this.LevelingUp();
+        }
+
+    }
 }
