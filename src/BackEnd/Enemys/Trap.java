@@ -10,9 +10,9 @@ public class Trap extends Enemy{
     public Integer TicksCount; // Counts the number of ticks since last visibility state change
     public boolean Visible; // Whether a trap is currently visible
 
-    public Trap(String Name,char tile,Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer Experience,Integer invisibilityTime, Integer visibilityTime)
+    public Trap(String Name,char tile,Integer HealthPool, Integer AttackPoints, Integer DefensePoints, Integer Experience,Integer invisibilityTime, Integer visibilityTime)
     {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,Experience);
+        super(Name,tile,HealthPool,AttackPoints,DefensePoints,Experience);
         this.Visible = true;
         this.TicksCount = 0;
         this.InvisibilityTime = invisibilityTime;

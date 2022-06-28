@@ -16,7 +16,6 @@ class TrapTest {
     String TrapName = "Bonus Trap";
     char TrapTile = 'B';
     Integer HealthPool = 1;
-    Integer HealthAmount = 1;
     Integer AttackPoints = 1;
     Integer DefensePoints = 1;
     Integer Experience = 250;
@@ -26,7 +25,7 @@ class TrapTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        trap = new Trap(TrapName,TrapTile,HealthPool,HealthAmount,AttackPoints,DefensePoints,Experience,invisibilityTime,visibilityTime);
+        trap = new Trap(TrapName,TrapTile,HealthPool,AttackPoints,DefensePoints,Experience,invisibilityTime,visibilityTime);
         trap.init(new Position(3,1),(msg) -> onMessageCallback(msg));
     }
 

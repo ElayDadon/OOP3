@@ -18,9 +18,7 @@ class MageTest {
 
     //Mage details:
     String Name = "Melisandre";
-    char tile = '@';
     Integer HealthPool = 100;
-    Integer HealthAmount = 100;
     Integer AttackPoints = 5;
     Integer DefensePoints = 1;
     Integer ManaPool = 300;
@@ -34,7 +32,6 @@ class MageTest {
     String MonsterName = "Wright";
     char MonsterTile = 'z';
     Integer HealthPoolMonster = 600;
-    Integer HealthAmountMonster = 600;
     Integer AttackPointsMonster = 30;
     Integer DefensePointsMonster = 15;
     Integer ExperienceMonster = 100;
@@ -45,9 +42,9 @@ class MageTest {
 
     @BeforeEach
     void setUp() {
-        Melisandre = new Mage(Name, tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,ManaPool,ManaCost,SpellPower,HitCount,Range);
+        Melisandre = new Mage(Name, HealthPool,DefensePoints,AttackPoints,ManaPool,ManaCost,SpellPower,HitCount,Range);
         Melisandre.init(new Position(3,5),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
-        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);

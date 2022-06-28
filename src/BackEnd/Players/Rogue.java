@@ -9,12 +9,10 @@ public class Rogue extends Player{
     public Integer CurrentEnergy;
 
     public Rogue( String Name,
-                  char tile,
                   Integer HealthPool,
-                  Integer HealthAmount,
                   Integer AttackPoints,
                   Integer DefensePoints, Integer Cost) {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,  "Fan of Knives");
+        super(Name,HealthPool,AttackPoints,DefensePoints,  "Fan of Knives");
         this.Cost = Cost;
         this.CurrentEnergy = 100;
     }

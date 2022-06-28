@@ -35,19 +35,19 @@ public abstract class Unit extends Tile {
     private static Random l = (new Random());
 
 
-    protected Unit(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
+    protected Unit(String Name, char tile, Integer HealthPool,  Integer AttackPoints, Integer DefensePoints) {
         super(tile);
         this.Name = Name;
         this.HealthPool = HealthPool;
-        this.HealthAmount = HealthAmount;
+        this.HealthAmount = HealthPool;
         this.AttackPoints = AttackPoints;
         this.DefensePoints = DefensePoints;
     }
-    protected Unit(String Name,Position position, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints) {
+    protected Unit(String Name,Position position, char tile, Integer HealthPool, Integer AttackPoints, Integer DefensePoints) {
         super(tile, position);
         this.Name = Name;
         this.HealthPool = HealthPool;
-        this.HealthAmount = HealthAmount;
+        this.HealthAmount = HealthPool;
         this.AttackPoints = AttackPoints;
         this.DefensePoints = DefensePoints;
     }
@@ -88,11 +88,9 @@ public String get_Name(){
     public abstract void onDeath();
     protected void battle(Unit u){
         messageCallback.send(String.format("%s is fighting %s \n%s \n%s ",get_Name(),u.get_Name(),describe(),u.describe()));
-        int dealt = Math.max(attack()-u.Defense(),0);
+        int dealt = attack()-u.Defense();
         messageCallback.send(String.format("%s done %d damage to %s ",get_Name(),dealt,u.get_Name()));
         u.Reduce_Amount(dealt);
-        if(u.getCurrentHealth() ==0)
-            u.accept(this);
     }
 
     private void Reduce_Amount(int i){

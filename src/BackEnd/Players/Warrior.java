@@ -10,17 +10,14 @@ public class Warrior extends Player{
     public Integer remainingCooldown;  //number of ticks remained until the warrior can use its special ability.
 
     public Warrior(String Name,
-                   char tile,
                    Integer HealthPool,
-                   Integer HealthAmount,
                    Integer AttackPoints,
                    Integer DefensePoints,
-                   Integer abilityCooldown,
-                   Integer remainingCooldown)
+                   Integer abilityCooldown)
     {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"Avenger's Shield");
+        super(Name,HealthPool,AttackPoints,DefensePoints,"Avenger's Shield");
         this.abilityCooldown = abilityCooldown;
-        this.remainingCooldown = remainingCooldown;
+        this.remainingCooldown = abilityCooldown;
     }
 
     public void levelingUpWarrior()

@@ -19,9 +19,9 @@ public class Player extends Unit {
 
 
 
-    public Player(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints,String ability_name)
+    public Player(String Name, Integer HealthPool, Integer AttackPoints, Integer DefensePoints,String ability_name)
     {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
+        super(Name,PLAYER_TILE,HealthPool,AttackPoints,DefensePoints);
         ABILITY_NAME = ability_name;
         this.experience = 0;
         this.PlayerLevel = 1;

@@ -13,8 +13,8 @@ public class Mage extends Player{
     public Integer HitsCount; // maximal numbers of times a single cast can hit
     Integer AbilityRange;
 
-    public Mage(String Name,char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Blizzard");
+    public Mage(String Name, Integer HealthPool, Integer AttackPoints, Integer DefensePoints, Integer ManaPool, Integer MamaCost, Integer SpellPower, Integer HitsCount, Integer AbilityRange){
+        super(Name,HealthPool,AttackPoints,DefensePoints, "Blizzard");
         this.ManaPool = ManaPool;
         this.CurrentMama = this.ManaPool/4;
         this.MamaCost = MamaCost;

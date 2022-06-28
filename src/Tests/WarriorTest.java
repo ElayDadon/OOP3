@@ -14,11 +14,9 @@ import java.util.List;
 public class WarriorTest {
     //Worrior details:
     Integer abilityCooldown = 3;
-    Integer remainingCooldown = 3;
     String Name = "Jon Snow";
     char tile = '@';
     Integer HealthPool = 300;
-    Integer HealthAmount = 300;
     Integer AttackPoints = 30;
     Integer DefensePoints = 4;
     private Warrior JonSnow;
@@ -27,7 +25,6 @@ public class WarriorTest {
     String MonsterName = "Wright";
     char MonsterTile = 'z';
     Integer HealthPoolMonster = 600;
-    Integer HealthAmountMonster = 600;
     Integer AttackPointsMonster = 30;
     Integer DefensePointsMonster = 15;
     Integer ExperienceMonster = 100;
@@ -38,9 +35,9 @@ public class WarriorTest {
 
     @Before
     public void beforeAny(){
-        JonSnow = new Warrior(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,abilityCooldown,remainingCooldown);
+        JonSnow = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
         JonSnow.init(new Position( 1,0), (msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
-        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);

@@ -17,9 +17,7 @@ class UnitTest {
 
     //Player details:
     String Name = "Player";
-    char tile = '@';
     Integer HealthPool = 100;
-    Integer HealthAmount = 100;
     Integer AttackPoints = 5;
     Integer DefensePoints = 1;
     private Player player;
@@ -27,7 +25,6 @@ class UnitTest {
     String MonsterName = "Wright";
     char MonsterTile = 'z';
     Integer HealthPoolMonster = 600;
-    Integer HealthAmountMonster = 450;
     Integer AttackPointsMonster = 30;
     Integer DefensePointsMonster = 15;
     Integer ExperienceMonster = 100;
@@ -35,9 +32,9 @@ class UnitTest {
     private Enemy monster;
     @BeforeEach
     void setUp() {
-        monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
-        player = new Player(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"PlayerTesting");
+        player = new Player(Name,HealthPool,AttackPoints,DefensePoints,"PlayerTesting");
         player.init(new Position(5,3),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
     }
 
@@ -91,7 +88,7 @@ class UnitTest {
 
     @Test
     void describe() {
-       String expectedString = String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", MonsterName, HealthAmountMonster, AttackPointsMonster, DefensePointsMonster);
+       String expectedString = String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", MonsterName, player.getCurrentHealth(), AttackPointsMonster, DefensePointsMonster);
         String monsterDescribe = monster.describe();
         if(!expectedString.equals(monsterDescribe)){
             throw new RuntimeException("descrive results is not as expected");

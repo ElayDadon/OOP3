@@ -15,7 +15,6 @@ class MonsterTest {
     String MonsterName = "Wright";
     char MonsterTile = 'z';
     Integer HealthPoolMonster = 600;
-    Integer HealthAmountMonster = 600;
     Integer AttackPointsMonster = 30;
     Integer DefensePointsMonster = 15;
     Integer ExperienceMonster = 100;
@@ -24,7 +23,7 @@ class MonsterTest {
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
 
     }
