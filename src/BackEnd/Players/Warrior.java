@@ -15,10 +15,10 @@ public class Warrior extends Player{
                    Integer HealthAmount,
                    Integer AttackPoints,
                    Integer DefensePoints,
-                    Integer abilityCooldown,
+                   Integer abilityCooldown,
                    Integer remainingCooldown)
     {
-        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints, "Avenger's Shield");
+        super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"Avenger's Shield");
         this.abilityCooldown = abilityCooldown;
         this.remainingCooldown = remainingCooldown;
     }

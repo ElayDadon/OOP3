@@ -1,5 +1,6 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Mage;
@@ -40,9 +41,16 @@ class MageTest {
     Integer visionRange = 3;
     private Enemy Monster;
 
+    private List<Enemy> enemies;
+
     @BeforeEach
     void setUp() {
         Melisandre = new Mage(Name, tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,ManaPool,ManaCost,SpellPower,HitCount,Range);
+        Melisandre.init(new Position(3,5),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        enemies = new LinkedList<Enemy>();
+        enemies.add(Monster);
     }
 
     @Test
@@ -64,9 +72,6 @@ class MageTest {
 
     @Test
     void abilityCast() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         Melisandre.AbilityCast(enemies);
         Assert.assertEquals("Ability Cast should changes the current Mama to 45",45, (int)Melisandre.CurrentMama);
     }
@@ -74,10 +79,13 @@ class MageTest {
     @Test
     void abilityCastFailed() {
         Melisandre.CurrentMama = 20;
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         Melisandre.AbilityCast(enemies);
         Assert.assertEquals("Ability Cast should changes the current Mama to 21",21, (int)Melisandre.CurrentMama);
     }
+
+    void onMessageCallback(String msg){
+    }
+    void onDeathCallback(){}
+
+    void onPleaceCallback(Position position){}
 }

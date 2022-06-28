@@ -19,7 +19,7 @@ public class Player extends Unit {
 
 
 
-    public Player(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints, String ability_name)
+    public Player(String Name, char tile, Integer HealthPool, Integer HealthAmount, Integer AttackPoints, Integer DefensePoints,String ability_name)
     {
         super(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints);
         ABILITY_NAME = ability_name;
@@ -40,6 +40,7 @@ public class Player extends Unit {
             HealthAmount = HealthPool;
             AttackPoints += 4 * PlayerLevel;
             DefensePoints += PlayerLevel;
+
             messageCallback.send(String.format("{0} leveling up to {1}",Name,PlayerLevel));
         }
     }
@@ -52,9 +53,7 @@ public class Player extends Unit {
 
 
     @Override
-    public void accept(Unit unit) {
-
-    }
+    public void accept(Unit unit) { unit.visit(this); }
 
     public List<Enemy> filterRange(List<Enemy> enemies, int range){
         return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());

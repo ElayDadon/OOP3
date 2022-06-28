@@ -36,7 +36,10 @@ public class Monster extends Enemy{
 
     @Override
     public void visit(Player p) {
-
+        super.battle(p);
+        if(!p.alive()){
+            p.onDeath();
+        }
     }
 
     @Override

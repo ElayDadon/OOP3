@@ -1,7 +1,9 @@
 package Tests;
 
 import BackEnd.Boards.Position;
+import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
+import BackEnd.Players.Player;
 import BackEnd.Tiles.Empty;
 import BackEnd.Tiles.Tile;
 import BackEnd.Tiles.Unit;
@@ -13,6 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UnitTest {
 
+    //Player details:
+    String Name = "Player";
+    char tile = '@';
+    Integer HealthPool = 100;
+    Integer HealthAmount = 100;
+    Integer AttackPoints = 5;
+    Integer DefensePoints = 1;
+    private Player player;
+
     String MonsterName = "Wright";
     char MonsterTile = 'z';
     Integer HealthPoolMonster = 600;
@@ -21,11 +32,13 @@ class UnitTest {
     Integer DefensePointsMonster = 15;
     Integer ExperienceMonster = 100;
     Integer visionRange = 3;
-    private Unit monster;
+    private Enemy monster;
     @BeforeEach
     void setUp() {
         monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-
+        monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        player = new Player(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"PlayerTesting");
+        player.init(new Position(5,3),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
     }
 
     @Test
@@ -42,11 +55,12 @@ class UnitTest {
     void getCurrentHealth() {
         Assert.assertEquals((int)monster.getCurrentHealth(),450);    }
 
-    @Test
-    void attack() {   }
 
     @Test
     void defense() {
+        Integer defenseVal = player.Defense();
+        if(defenseVal > player.DefensePoints)
+            throw new RuntimeException("defense vallue is out of range");
     }
 
     @Test
@@ -55,12 +69,12 @@ class UnitTest {
     @Test
     void getDefense() { Assert.assertEquals((int)monster.getDefense(),15); }
 
-    @Test
-    void battle() {
-    }
 
     @Test
     void interact() {
+        monster.interact(player);
+        if(monster.getCurrentHealth()== monster.getMaxHealth() && player.getCurrentHealth() == player.getMaxHealth())
+            throw new RuntimeException("interact didn't change current health to enemy or player");
     }
 
     @Test
@@ -83,4 +97,10 @@ class UnitTest {
             throw new RuntimeException("descrive results is not as expected");
         }
     }
+
+    void onMessageCallback(String msg){
+    }
+    void onDeathCallback(){}
+
+    void onPleaceCallback(Position position){}
 }

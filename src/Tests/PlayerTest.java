@@ -36,26 +36,31 @@ class PlayerTest {
     Integer visionRange = 3;
     private Enemy Monster;
 
+    private List<Enemy> enemies;
     @BeforeEach
     void setUp() {
         player = new Player(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"PlayerTesting");
+        player.init(new Position(5,3),(msg) -> onMessageCallback(""), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
         Position playerP = new Position(3,7);
-        //MessageCallback messageCallback = new MessageCallback() ;
-        //player.init(playerP,);
+        String ms = String.format("{0} \t\tHealth: {1}\t\t Attack: {2}",Name,HealthAmount,AttackPoints);;
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster.init(new Position(3,1),(msg) -> onMessageCallback(""));
+        enemies = new LinkedList<Enemy>();
+        enemies.add(Monster);
     }
 
-    @Test
-    void levelingUp() {
-        player.experience = 75;
-        player.LevelingUp();
-        Assert.assertEquals("leveling up should changes the experience to 25",25, (int)player.experience);
-        Assert.assertEquals("leveling up should changes the level to 2",2, (int)player.PlayerLevel);
-        Assert.assertEquals("leveling up should changes the health pool to 120",120, (int)player.HealthPool);
-        Assert.assertEquals("leveling up should changes the health amount to 120",120, (int)player.HealthAmount);
-        Assert.assertEquals("leveling up should changes the attack points to 120",13, (int)player.AttackPoints);
-        Assert.assertEquals("leveling up should changes the defends points to 120",3, (int)player.DefensePoints);
-
-    }
+//    @Test
+//    void levelingUp() {
+//        player.experience = 75;
+//        player.LevelingUp();
+//        assertEquals(25, (int)player.experience, "leveling up should changes the experience to 25");
+//        Assert.assertEquals("leveling up should changes the level to 2",2, (int)player.PlayerLevel);
+//        Assert.assertEquals("leveling up should changes the health pool to 120",120, (int)player.HealthPool);
+//        Assert.assertEquals("leveling up should changes the health amount to 120",120, (int)player.HealthAmount);
+//        Assert.assertEquals("leveling up should changes the attack points to 120",13, (int)player.AttackPoints);
+//        Assert.assertEquals("leveling up should changes the defends points to 120",3, (int)player.DefensePoints);
+//
+//    }
 
     @Test
     void isLevelUpTrue() {
@@ -74,23 +79,29 @@ class PlayerTest {
 
     @Test
     void filterRange() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         player.filterRange(enemies,5);
         //TODO: position is missing in constructor
     }
 
     @Test
     void onDeath() {
-        //TODO:
+        player.HealthAmount = 3;
+        Monster.interact(player);
+
+        System.out.println(player.getCurrentHealth());
+        System.out.println(Monster.getCurrentHealth());
+//        assertEquals( "player health score is not correct");
+
     }
 
     @Test
-    void visit() {
+    void battle(){
+        Monster.interact(player);
     }
 
-    @Test
-    void testVisit() {
+    void onMessageCallback(String msg){
     }
+    void onDeathCallback(){}
+
+    void onPleaceCallback(Position position){}
 }

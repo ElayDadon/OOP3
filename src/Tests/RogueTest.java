@@ -1,5 +1,6 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Rogue;
@@ -33,9 +34,15 @@ class RogueTest {
     Integer visionRange = 3;
     private Enemy Monster;
 
+    private List<Enemy> enemies;
     @BeforeEach
     void setUp() {
         Bronn = new Rogue(Name, tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,Cost);
+        Bronn.init(new Position(2,6),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        enemies = new LinkedList<Enemy>();
+        enemies.add(Monster);
     }
 
     @Test
@@ -58,19 +65,19 @@ class RogueTest {
 
     @Test
     void abilityCast() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         Bronn.AbilityCast(enemies);
         Assert.assertEquals("Ability cast should changes the Current Energy to 50",50 ,(int)Bronn.CurrentEnergy);
     }
     @Test
     void abilityCastFailed() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         Bronn.CurrentEnergy = 30;
         Bronn.AbilityCast(enemies);
         Assert.assertEquals("Ability cast should changes the Current Energy to 40",40 ,(int)Bronn.CurrentEnergy);
     }
+
+    void onMessageCallback(String msg){
+    }
+    void onDeathCallback(){}
+
+    void onPleaceCallback(Position position){}
 }

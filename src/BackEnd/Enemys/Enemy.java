@@ -19,7 +19,7 @@ public abstract class Enemy extends Unit {
         this.Experience = Experience;
     }
 
-    public void init(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
+    public void init(Position position, MessageCallback messageCallback){
         super.initialize(position,messageCallback,deathMessage,placementCallBack);
     }
 

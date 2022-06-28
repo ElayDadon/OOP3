@@ -1,8 +1,12 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
+import BackEnd.Enemys.Monster;
 import BackEnd.Enemys.Trap;
 import org.junit.Assert;
+
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +27,7 @@ class TrapTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         trap = new Trap(TrapName,TrapTile,HealthPool,HealthAmount,AttackPoints,DefensePoints,Experience,invisibilityTime,visibilityTime);
+        trap.init(new Position(3,1),(msg) -> onMessageCallback(msg));
     }
 
     @org.junit.jupiter.api.Test
@@ -48,5 +53,8 @@ class TrapTest {
 
     @org.junit.jupiter.api.Test
     void testVisit() {
+    }
+
+    void onMessageCallback(String msg){
     }
 }

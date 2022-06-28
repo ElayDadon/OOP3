@@ -1,5 +1,6 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Enemys.Trap;
@@ -24,6 +25,8 @@ class MonsterTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+
     }
 
     @Test
@@ -50,5 +53,9 @@ class MonsterTest {
 
     @Test
     void testVisit() {
+    }
+
+
+    void onMessageCallback(String msg){
     }
 }

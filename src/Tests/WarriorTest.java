@@ -1,8 +1,10 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Warrior;
+import FrontEnd.Messages.MessageCallback;
 import org.junit.Assert;
 import org.junit.Before;
 
@@ -32,9 +34,18 @@ public class WarriorTest {
     Integer visionRange = 3;
     private Enemy Monster;
 
+    private List<Enemy> enemies;
+
     @Before
     public void beforeAny(){
-        JonSnow = new Warrior(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,abilityCooldown,remainingCooldown);}
+        JonSnow = new Warrior(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,abilityCooldown,remainingCooldown);
+        JonSnow.init(new Position( 1,0), (msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
+        Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        enemies = new LinkedList<Enemy>();
+        enemies.add(Monster);
+    }
+
 
     public void setUp() throws Exception {}
 
@@ -61,9 +72,6 @@ public class WarriorTest {
 
     @org.junit.Test
     public void abilityCasting() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         JonSnow.remainingCooldown = 0;
         JonSnow.HealthAmount = 50;
         //TODO: need to check the getPosition because its null
@@ -75,11 +83,14 @@ public class WarriorTest {
 
     @org.junit.Test
     public void abilityCastingFailed() {
-        Enemy m = new Monster(MonsterName,MonsterTile,HealthPoolMonster, HealthAmountMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        List<Enemy> enemies = new LinkedList<Enemy>();
-        enemies.add(m);
         JonSnow.remainingCooldown = 3;
         JonSnow.abilityCasting(enemies);
         Assert.assertEquals("remaining cooldown should be 2", (int)JonSnow.remainingCooldown, 2);
     }
+
+    void onMessageCallback(String msg){
+    }
+    void onDeathCallback(){}
+
+    void onPleaceCallback(Position position){}
 }

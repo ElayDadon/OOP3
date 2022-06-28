@@ -91,10 +91,12 @@ public String get_Name(){
         int dealt = Math.max(attack()-u.Defense(),0);
         messageCallback.send(String.format("%s done %d damage to %s ",get_Name(),dealt,u.get_Name()));
         u.Reduce_Amount(dealt);
+        if(u.getCurrentHealth() ==0)
+            u.accept(this);
     }
 
     private void Reduce_Amount(int i){
-        this.HealthAmount = this.HealthAmount-i;
+        this.HealthAmount = Math.max(this.HealthAmount-i,0);
     }
     private void setCurrentHealth(int i) {
         this.HealthAmount = i;
@@ -122,16 +124,14 @@ position.set(tile.position.getX(),tile.position.getY());
 tile.position.set(resX,resY);
     }
 
-    /*
-    // Should be automatically called once the unit finishes its turn
-    public abstract void processStep();
-
-
-    // This unit attempts to interact with another tile.
-    public void visit(Empty e){
-		...
+    public void setMessageCallback(MessageCallback messageCallback) {
+        this.messageCallback = messageCallback;
     }
-*/
+    public void setPlacementCallBack(PlacementCallBack positionCallback) { this.placementCallBack = positionCallback; }
+    public void setDeathCallback(DeathMessage deathCallback) {
+        this.deathMessage = deathCallback;
+    }
+
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", get_Name(), getCurrentHealth(), getAttack(), getDefense());
     }
