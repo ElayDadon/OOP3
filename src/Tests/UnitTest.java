@@ -88,7 +88,7 @@ class UnitTest {
 
     @Test
     void describe() {
-       String expectedString = String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", MonsterName, player.getCurrentHealth(), AttackPointsMonster, DefensePointsMonster);
+       String expectedString = String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", MonsterName, monster.getCurrentHealth(), AttackPointsMonster, DefensePointsMonster);
         String monsterDescribe = monster.describe();
         if(!expectedString.equals(monsterDescribe)){
             throw new RuntimeException("descrive results is not as expected");
