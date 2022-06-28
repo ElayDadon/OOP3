@@ -1,8 +1,11 @@
 package BackEnd.Players;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Tiles.Unit;
+import FrontEnd.Messages.DeathMessage;
 import FrontEnd.Messages.MessageCallback;
+import FrontEnd.Messages.PlacementCallBack;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +15,7 @@ public class Player extends Unit {
     public Integer PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
     public static final char PLAYER_TILE = '@';
-    MessageCallback messageCallback;
+    //MessageCallback messageCallback;
 
 
 
@@ -22,6 +25,10 @@ public class Player extends Unit {
         ABILITY_NAME = ability_name;
         this.experience = 0;
         this.PlayerLevel = 1;
+    }
+
+    public void init(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
+        super.initialize(position,messageCallback,deathMessage,placementCallBack);
     }
 
     public void LevelingUp()
@@ -56,6 +63,7 @@ public class Player extends Unit {
     @Override
     public void onDeath() {
         messageCallback.send("You lost.");
+        deathMessage.show();
     }
 
     @Override

@@ -109,11 +109,12 @@ public String get_Name(){
     public abstract void visit(Player p);
     public abstract void visit(Enemy e);
     public void set_Position(Position position){
-        this.position = position;
+        super.position = position;
     }
     public void visit(Empty e){
 SwapPositions(e);
     }
+    public void  visit(Wall w){}
     protected void SwapPositions(Tile tile){
         int resX = position.getX();
         int resY = position.getY();

@@ -1,5 +1,6 @@
 package Tests;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Player;
@@ -38,6 +39,9 @@ class PlayerTest {
     @BeforeEach
     void setUp() {
         player = new Player(Name,tile,HealthPool,HealthAmount,AttackPoints,DefensePoints,"PlayerTesting");
+        Position playerP = new Position(3,7);
+        //MessageCallback messageCallback = new MessageCallback() ;
+        //player.init(playerP,);
     }
 
     @Test

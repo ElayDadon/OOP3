@@ -1,10 +1,13 @@
 package BackEnd.Enemys;
 
+import BackEnd.Boards.Position;
 import BackEnd.Players.Player;
 import BackEnd.Tiles.Unit;
 
 import BackEnd.Tiles.Unit;
 import FrontEnd.Messages.DeathMessage;
+import FrontEnd.Messages.MessageCallback;
+import FrontEnd.Messages.PlacementCallBack;
 
 import java.util.List;
 
@@ -16,12 +19,16 @@ public abstract class Enemy extends Unit {
         this.Experience = Experience;
     }
 
+    public void init(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
+        super.initialize(position,messageCallback,deathMessage,placementCallBack);
+    }
+
     public boolean isAlive(){
         return this.HealthAmount > 0;
     }
 
     @Override
-    public void accept(Unit unit) {
+    public void accept(Unit unit) { unit.visit(this);
 
     }
 
@@ -34,7 +41,10 @@ public abstract class Enemy extends Unit {
 
     @Override
     public void visit(Player p) {
-
+        super.battle(p);
+        if(!p.alive()){
+            p.onDeath();
+        }
     }
 
     @Override
