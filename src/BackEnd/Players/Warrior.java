@@ -20,7 +20,8 @@ public class Warrior extends Player{
         this.remainingCooldown = abilityCooldown;
     }
 
-    public void levelingUpWarrior()
+
+    public void LevelingUp()
     {
         super.LevelingUp();
         this.remainingCooldown = 0;

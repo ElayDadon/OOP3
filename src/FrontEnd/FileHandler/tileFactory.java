@@ -8,6 +8,7 @@ import BackEnd.Players.Mage;
 import BackEnd.Players.Player;
 import BackEnd.Players.Rogue;
 import BackEnd.Players.Warrior;
+import BackEnd.Players.Hunter;
 import BackEnd.Tiles.Empty;
 import BackEnd.Tiles.Wall;
 import FrontEnd.Messages.MessageCallback;
@@ -57,8 +58,8 @@ public class tileFactory {
                 () -> new Mage("Melisandre", 100, 5, 1, 300, 30, 15, 5, 6),
                 () -> new Mage("Thoros of Myr", 250, 25, 4, 150, 20, 20, 3, 4),
                 () -> new Rogue("Arya Stark", 150, 40, 2, 20),
-                () -> new Rogue("Bronn", 250, 35, 3, 50)
-//                () -> new Hunter("Ygritte", 220, 30, 2, 6)
+                () -> new Rogue("Bronn", 250, 35, 3, 50),
+                () -> new Hunter("Ygritte", 220, 30, 2, 6)
         );
     }
 

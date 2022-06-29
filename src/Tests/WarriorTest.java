@@ -51,7 +51,7 @@ public class WarriorTest {
     public void levelingUpWarrior() {
         JonSnow.experience = 75;
         JonSnow.remainingCooldown = 2;
-        JonSnow.levelingUpWarrior();
+        JonSnow.LevelingUp();
         Integer level  = JonSnow.PlayerLevel;
         Assert.assertEquals("leveling up should changes the level to 2",2, (int)level);
         Assert.assertEquals("leveling up should changes the remaining cooldown to 0", 0,(int)JonSnow.remainingCooldown);
