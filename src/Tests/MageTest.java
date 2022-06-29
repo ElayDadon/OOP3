@@ -63,7 +63,7 @@ class MageTest {
 
     @Test
     void gameTick() {
-        Melisandre.GameTick();
+        Melisandre.tickingGame();
         Assert.assertEquals("game tick should changes the current Mama to 76",76, (int)Melisandre.CurrentMama);
     }
 

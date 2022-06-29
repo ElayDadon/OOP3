@@ -20,12 +20,12 @@ public class Monster extends Enemy{
     //TODO : why on hide?
     @Override
     public void OnEnemyTurn(Player player){
-//            if (player.Range(this.position) < vision_range) {
-//                PlacementCallBack.Move(actionsMap.get(playerTrackPattern(player)).get());
-//            }
-//            else {
-//                PlacementCallBack.Move(actionsMap.get(Movement.randomMovement()).get());
-//            }
+           if (player.Range(this.position) < vision_range) {
+               placementCallBack.changePlacement(actionsMap.get(playerTrackPattern(player)).get());
+            }
+            else {
+               placementCallBack.changePlacement(actionsMap.get(Movement.randomMovement()).get());
+            }
     }
 
     protected Character playerTrackPattern(Player player){

@@ -10,13 +10,11 @@ import FrontEnd.Messages.PlacementCallBack;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Player extends Unit {
+public abstract class Player extends Unit {
     public Integer experience = 0;  // Increased by killing enemies
     public Integer PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
     public static final char PLAYER_TILE = '@';
-    //MessageCallback messageCallback;
-
 
 
     public Player(String Name, Integer HealthPool, Integer AttackPoints, Integer DefensePoints,String ability_name)
@@ -51,7 +49,7 @@ public class Player extends Unit {
         return false;
     }
 
-
+    public abstract void tickingGame();
     @Override
     public void accept(Unit unit) { unit.visit(this); }
 

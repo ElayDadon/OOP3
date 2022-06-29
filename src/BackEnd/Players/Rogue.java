@@ -26,7 +26,7 @@ public class Rogue extends Player{
         }
     }
 
-    public void GameTick(){
+    public void tickingGame(){
         this.CurrentEnergy = Math.min(this.CurrentEnergy+10, 100);
     }
 
@@ -41,7 +41,7 @@ public class Rogue extends Player{
             }
         }
         else{
-            GameTick();
+            tickingGame();
             String msg = MessageFormat.format("{0} does not have enough Energy to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

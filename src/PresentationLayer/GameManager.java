@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import BackEnd.Players.Player;
+import BackEnd.Tiles.Tile;
 import FrontEnd.FileHandler.tileFactory;
 
 import javax.swing.*;
@@ -28,10 +29,11 @@ public class GameManager {
 
     public void start() {
         player = choosePlayer();
-        //TODO >> to implement
+        List<Tile> boardList;
         while (level <= levelsNum & player.alive()) {
             List<String> lines = loadLevel();
             LevelManager levelManager = new LevelManager(player, lines);
+            levelManager.Tick();
 
         }
     }

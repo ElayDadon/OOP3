@@ -32,7 +32,7 @@ public class Mage extends Player{
         }
     }
 
-    public void GameTick(){
+    public void tickingGame(){
         this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama+this.PlayerLevel ));
     }
 
@@ -62,7 +62,7 @@ public class Mage extends Player{
             }
         }
         else {
-            GameTick();
+            tickingGame();
             String msg = MessageFormat.format("{0} does not have enough Mama to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

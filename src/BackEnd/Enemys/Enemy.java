@@ -20,6 +20,8 @@ public abstract class Enemy extends Unit {
     }
 
     public void init(Position position, MessageCallback messageCallback){
+        PlacementCallBack placementCallBack = (pos) -> setPosition(pos);
+        DeathMessage deathMessage = () -> System.out.println(String.format("{o} enemy died", super.Name));
         super.initialize(position,messageCallback,deathMessage,placementCallBack);
     }
 

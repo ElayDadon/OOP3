@@ -56,7 +56,7 @@ class RogueTest {
     @Test
     void gameTick() {
         Bronn.CurrentEnergy= 60;
-        Bronn.GameTick();
+        Bronn.tickingGame();
         Assert.assertEquals("GameTick should changes the Current Energy to 70",70 ,(int)Bronn.CurrentEnergy);
     }
 
