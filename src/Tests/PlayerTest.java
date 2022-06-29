@@ -68,7 +68,7 @@ class PlayerTest {
 
     @Test
     void isLevelUpFalse() {
-        Assert.assertFalse("Player need more expriencr >> false", player.isLevelUp());
+        Assert.assertFalse("Player need more experience >> false", player.isLevelUp());
     }
 
 
