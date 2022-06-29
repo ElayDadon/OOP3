@@ -72,7 +72,7 @@ public class WarriorTest {
     public void abilityCasting() {
         JonSnow.remainingCooldown = 0;
         JonSnow.HealthAmount = 50;
-        JonSnow.abilityCasting(enemies);
+        JonSnow.AbilityCast(enemies);
         Assert.assertEquals("remaining cooldown should be 3", (int)JonSnow.remainingCooldown, 3);
         Assert.assertEquals("health amount should be 90", (int)JonSnow.HealthAmount, 90);
     }
@@ -80,7 +80,7 @@ public class WarriorTest {
     @org.junit.Test
     public void abilityCastingFailed() {
         JonSnow.remainingCooldown = 3;
-        JonSnow.abilityCasting(enemies);
+        JonSnow.AbilityCast(enemies);
         Assert.assertEquals("remaining cooldown should be 2", (int)JonSnow.remainingCooldown, 2);
     }
 

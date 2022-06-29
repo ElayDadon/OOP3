@@ -34,7 +34,6 @@ public class GameManager {
             List<String> lines = loadLevel();
             LevelManager levelManager = new LevelManager(player, lines);
             levelManager.Tick();
-
         }
     }
 

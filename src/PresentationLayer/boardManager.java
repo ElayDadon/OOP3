@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import BackEnd.Boards.Position;
 import BackEnd.Tiles.Tile;
 
 import java.util.ArrayList;
@@ -57,6 +58,14 @@ public class boardManager {
                 counterWidth++;
         }
         return output;
+    }
+
+    public Tile getTile(Position p){
+        for (Tile tile: board) {
+            if(tile.getPosition().compareTo(p) == 0)
+                return tile;
+        }
+        return null;
     }
 
 }

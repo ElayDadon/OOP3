@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import BackEnd.Boards.Movement;
 import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Players.Player;
@@ -11,6 +12,7 @@ import FrontEnd.FileHandler.tileFactory;
 import FrontEnd.Messages.PlacementCallBack;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class LevelManager {
 
@@ -23,6 +25,14 @@ public class LevelManager {
         this.levelLines = lines;
         EM = new enemiesManager();
         loadLevel();
+    }
+
+    public void start(){
+        while (!EM.isOver() & player.alive()){
+            System.out.println(BM);
+            System.out.println(player);
+            Tick();
+        }
     }
 
 
@@ -66,7 +76,33 @@ public class LevelManager {
     }
 
     public void Tick(){
-        player.tickingGame();
+        playerTick();
         EM.gameTick(player);
+    }
+
+    private void playerTick(){
+        Position p = move();
+        player.interact(BM.getTile(p));
+        player.tickingGame();
+        player.LevelingUp();
+    }
+
+    private Position move(){
+        Scanner scanner = new Scanner(System.in);
+        List<Character> keys = Arrays.asList(Movement.up,Movement.down,Movement.left,Movement.right,Movement.stay,Player.castAbility);
+        String s = scanner.next();
+        while (s.length() != 1 || !keys.contains(s.charAt(0))){
+            System.out.println("please choose a valid key");
+            s = scanner.next();
+        }
+        char key = s.charAt(0);
+        if (key == 'e') {
+            player.AbilityCast();
+            return player.getPosition();
+        }
+        else{
+            Function<Position,Position> move = Movement.movements.get(key);
+            return move.apply(player.getPosition());
+        }
     }
 }

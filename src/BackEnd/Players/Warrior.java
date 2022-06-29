@@ -33,7 +33,7 @@ public class Warrior extends Player{
         this.remainingCooldown = Math.max(this.remainingCooldown -1, 0);
     }
 
-    public void abilityCasting(List<Enemy> enemies){ // Avenger's Shield
+    public void AbilityCast(List<Enemy> enemies){ // Avenger's Shield
         if(remainingCooldown == 0){
             remainingCooldown = abilityCooldown; // After casting ability, should wait again
             super.HealthAmount = Math.min(super.HealthAmount + 10* super.DefensePoints, super.HealthPool);

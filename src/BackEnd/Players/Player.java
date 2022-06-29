@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Player extends Unit {
+    public static char castAbility = 'e';
     public Integer experience = 0;  // Increased by killing enemies
     public Integer PlayerLevel; // Increased When Experience reached to 50 X level
     protected final String ABILITY_NAME;
@@ -50,6 +51,8 @@ public abstract class Player extends Unit {
     }
 
     public abstract void tickingGame();
+    public abstract void AbilityCast();
+
     @Override
     public void accept(Unit unit) { unit.visit(this); }
 

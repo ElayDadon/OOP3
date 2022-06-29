@@ -19,7 +19,19 @@ public class enemiesManager {
 
     public void gameTick(Player player){
         for (Enemy enemy : enemies ){
-            enemy.OnEnemyTurn(player);
+            if(!enemy.alive())
+                removeEnemy(enemy);
+            else
+                enemy.OnEnemyTurn(player);
         }
     }
+
+    private void removeEnemy(Enemy e){
+        enemies.remove(e);
+    }
+
+    public boolean isOver(){
+        return enemies.isEmpty();
+    }
+
 }
