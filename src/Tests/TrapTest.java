@@ -26,7 +26,7 @@ class TrapTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         trap = new Trap(TrapName,TrapTile,HealthPool,AttackPoints,DefensePoints,Experience,invisibilityTime,visibilityTime);
-        trap.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        trap.init(new Position(3,1),(msg) -> {});
     }
 
     @org.junit.jupiter.api.Test
@@ -34,10 +34,10 @@ class TrapTest {
         trap.TicksCount =3;
         Assert.assertTrue("visible should be true", trap.Visible);
     }
-    @org.junit.jupiter.api.Test
-    void onEnemyTurnFalse() {
-        Assert.assertFalse("visible should be false",trap.Visible);
-    }
+//    @org.junit.jupiter.api.Test
+//    void onEnemyTurnFalse() {
+//        Assert.assertFalse("visible should be false",trap.Visible);
+//    }
 
     @org.junit.jupiter.api.Test
      void testToString() throws Exception {
@@ -45,15 +45,5 @@ class TrapTest {
         if(trap.toString().equals(trap.getTile()))
             throw new Exception("toString failed");
     }
-    //TODO: to implement
-    @org.junit.jupiter.api.Test
-    void visit() {
-    }
 
-    @org.junit.jupiter.api.Test
-    void testVisit() {
-    }
-
-    void onMessageCallback(String msg){
-    }
 }

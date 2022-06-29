@@ -4,6 +4,7 @@ import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Player;
+import BackEnd.Players.Warrior;
 import FrontEnd.Messages.MessageCallback;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ class PlayerTest {
     Integer HealthPool = 100;
     Integer AttackPoints = 5;
     Integer DefensePoints = 1;
+    Integer abilityCooldown = 3;
     private Player player;
 
     //Monster details:
@@ -36,12 +38,12 @@ class PlayerTest {
     private List<Enemy> enemies;
     @BeforeEach
     void setUp() {
-        player = new Player(Name,HealthPool,AttackPoints,DefensePoints,"PlayerTesting");
-        player.init(new Position(5,3),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        player = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
+        player.init(new Position(5,3),(msg) -> {}, () -> {}, (pos) -> {});
         Position playerP = new Position(3,7);
         String ms = String.format("{0} \t\tHealth: {1}\t\t Attack: {2}",Name,player.getCurrentHealth(),AttackPoints);;
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        Monster.init(new Position(3,1),(msg) -> onMessageCallback(""));
+        Monster.init(new Position(3,1),(msg) -> {});
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);
     }
@@ -85,9 +87,5 @@ class PlayerTest {
     }
 
 
-    void onMessageCallback(String msg){
-    }
-    void onDeathCallback(){}
 
-    void onPleaceCallback(Position position){}
 }

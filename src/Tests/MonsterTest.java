@@ -24,7 +24,7 @@ class MonsterTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        monster.init(new Position(3,1),(msg) -> {});
 
     }
 
@@ -38,23 +38,5 @@ class MonsterTest {
         monster.HealthAmount = 0;
         Assert.assertFalse(monster.isAlive());
     }
-    @Test
-    void onEnemyTurn() {
-    }
 
-    @Test
-    void playerTrackPattern() {
-    }
-
-    @Test
-    void visit() {
-    }
-
-    @Test
-    void testVisit() {
-    }
-
-
-    void onMessageCallback(String msg){
-    }
 }

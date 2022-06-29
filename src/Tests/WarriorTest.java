@@ -39,7 +39,7 @@ public class WarriorTest {
         JonSnow = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
         JonSnow.init(new Position( 1,0), (msg) -> {}, () -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        Monster.init(new Position(3,1),(msg) -> {});
+        Monster.init(new Position(9,9),(msg) -> {});
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);
     }
@@ -68,23 +68,21 @@ public class WarriorTest {
         Assert.assertEquals("remaining cooldown should be 2", (int)remainingCooldownVal, 1);
     }
 
-//    @org.junit.Test
-//    public void abilityCasting() {
-//        JonSnow.remainingCooldown = 0;
-//        JonSnow.HealthAmount = 50;
-//        //TODO: need to check the getPosition because its null
-//        //null exception in filter range (Player)
-//        JonSnow.abilityCasting(enemies);
-//        Assert.assertEquals("remaining cooldown should be 3", (int)JonSnow.remainingCooldown, 3);
-//        Assert.assertEquals("health amount should be 90", (int)JonSnow.HealthAmount, 90);
-//    }
+    @org.junit.Test
+    public void abilityCasting() {
+        JonSnow.remainingCooldown = 0;
+        JonSnow.HealthAmount = 50;
+        JonSnow.abilityCasting(enemies);
+        Assert.assertEquals("remaining cooldown should be 3", (int)JonSnow.remainingCooldown, 3);
+        Assert.assertEquals("health amount should be 90", (int)JonSnow.HealthAmount, 90);
+    }
 
-//    @org.junit.Test
-//    public void abilityCastingFailed() {
-//        JonSnow.remainingCooldown = 3;
-//        JonSnow.abilityCasting(enemies);
-//        Assert.assertEquals("remaining cooldown should be 2", (int)JonSnow.remainingCooldown, 2);
-//    }
+    @org.junit.Test
+    public void abilityCastingFailed() {
+        JonSnow.remainingCooldown = 3;
+        JonSnow.abilityCasting(enemies);
+        Assert.assertEquals("remaining cooldown should be 2", (int)JonSnow.remainingCooldown, 2);
+    }
 
 
 

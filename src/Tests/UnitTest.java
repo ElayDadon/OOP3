@@ -4,6 +4,7 @@ import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Enemys.Monster;
 import BackEnd.Players.Player;
+import BackEnd.Players.Warrior;
 import BackEnd.Tiles.Empty;
 import BackEnd.Tiles.Tile;
 import BackEnd.Tiles.Unit;
@@ -20,6 +21,7 @@ class UnitTest {
     Integer HealthPool = 100;
     Integer AttackPoints = 5;
     Integer DefensePoints = 1;
+    Integer abilityCooldown = 3;
     private Player player;
 
     String MonsterName = "Wright";
@@ -33,9 +35,9 @@ class UnitTest {
     @BeforeEach
     void setUp() {
         monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
-        player = new Player(Name,HealthPool,AttackPoints,DefensePoints,"PlayerTesting");
-        player.init(new Position(5,3),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        monster.init(new Position(3,1),(msg) -> {});
+        player = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
+        player.init(new Position(5,3),(msg) -> {}, () -> {} , (pos) -> {});
     }
 
     @Test
@@ -95,9 +97,4 @@ class UnitTest {
         }
     }
 
-    void onMessageCallback(String msg){
-    }
-    void onDeathCallback(){}
-
-    void onPleaceCallback(Position position){}
 }

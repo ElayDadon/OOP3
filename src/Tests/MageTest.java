@@ -43,9 +43,9 @@ class MageTest {
     @BeforeEach
     void setUp() {
         Melisandre = new Mage(Name, HealthPool,DefensePoints,AttackPoints,ManaPool,ManaCost,SpellPower,HitCount,Range);
-        Melisandre.init(new Position(3,5),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        Melisandre.init(new Position(3,5),(msg) -> {}, () -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        Monster.init(new Position(3,1),(msg) -> {});
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);
     }
@@ -80,9 +80,4 @@ class MageTest {
         Assert.assertEquals("Ability Cast should changes the current Mama to 21",21, (int)Melisandre.CurrentMama);
     }
 
-    void onMessageCallback(String msg){
-    }
-    void onDeathCallback(){}
-
-    void onPleaceCallback(Position position){}
 }

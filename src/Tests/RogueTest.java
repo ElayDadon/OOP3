@@ -35,9 +35,9 @@ class RogueTest {
     @BeforeEach
     void setUp() {
         Bronn = new Rogue(Name,HealthPool,AttackPoints,DefensePoints,Cost);
-        Bronn.init(new Position(2,6),(msg) -> onMessageCallback(msg), () -> onDeathCallback(), (pos) -> onPleaceCallback(pos));
+        Bronn.init(new Position(2,6),(msg) -> {}, () -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
-        Monster.init(new Position(3,1),(msg) -> onMessageCallback(msg));
+        Monster.init(new Position(3,1),(msg) -> {});
         enemies = new LinkedList<Enemy>();
         enemies.add(Monster);
     }
@@ -72,9 +72,4 @@ class RogueTest {
         Assert.assertEquals("Ability cast should changes the Current Energy to 40",40 ,(int)Bronn.CurrentEnergy);
     }
 
-    void onMessageCallback(String msg){
-    }
-    void onDeathCallback(){}
-
-    void onPleaceCallback(Position position){}
 }
