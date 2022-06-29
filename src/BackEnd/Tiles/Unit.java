@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 import java.util.function.Supplier;
 
 public abstract class Unit extends Tile {
-    protected Map<Character, Supplier<Position>> actionsMap = new HashMap<>(){
+    protected Map<Character, Function<Position,Position>> actionsMap = new HashMap<>(){
         {
-            put(Movement.down, () -> getPosition().Down());
-            put(Movement.up, () -> getPosition().Up());
-            put(Movement.right, () -> getPosition().Right());
-            put(Movement.left, () -> getPosition().Left());
-            put(Movement.stay, () -> getPosition().NoOperation());
+            put(Movement.down, (position) -> position.Down());
+            put(Movement.up, (position) -> position.Up());
+            put(Movement.right, (position) -> position.Right());
+            put(Movement.left, (position) -> position.Left());
+            put(Movement.stay, (position) -> position.NoOperation());
         }
     };
     public String Name;
@@ -43,14 +43,18 @@ public abstract class Unit extends Tile {
         this.AttackPoints = AttackPoints;
         this.DefensePoints = DefensePoints;
     }
-    protected Unit(String Name,Position position, char tile, Integer HealthPool, Integer AttackPoints, Integer DefensePoints) {
-        super(tile, position);
-        this.Name = Name;
-        this.HealthPool = HealthPool;
-        this.HealthAmount = HealthPool;
-        this.AttackPoints = AttackPoints;
-        this.DefensePoints = DefensePoints;
+    public Position getPosition(){
+        return position;
     }
+
+//    protected Unit(String Name,Position position, char tile, Integer HealthPool, Integer AttackPoints, Integer DefensePoints) {
+//        super(tile, position);
+//        this.Name = Name;
+//        this.HealthPool = HealthPool;
+//        this.HealthAmount = HealthPool;
+//        this.AttackPoints = AttackPoints;
+//        this.DefensePoints = DefensePoints;
+//    }
 public String get_Name(){
         return Name;
     }
@@ -62,7 +66,7 @@ public String get_Name(){
     }
 
     protected void initialize(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
-        super.initialize(position);
+        this.position = position;
         this.deathMessage = deathMessage;
         this.messageCallback = messageCallback;
         this.placementCallBack = placementCallBack;
@@ -134,5 +138,9 @@ tile.position.set(resX,resY);
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", get_Name(), getCurrentHealth(), getAttack(), getDefense());
     }
 
+    public double Range(Position other_position)
+    {
+        return Math.sqrt(Math.pow(other_position.getX() - position.getX(), 2) + Math.pow(other_position.getY() - position.getY(), 2));
+    }
 
 }

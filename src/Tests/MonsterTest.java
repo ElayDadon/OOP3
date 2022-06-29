@@ -30,13 +30,13 @@ class MonsterTest {
 
     @Test
     void isAliveTestTrue(){
-        Assert.assertTrue(monster.isAlive());
+        Assert.assertTrue(monster.alive());
     }
 
     @Test
     void isAliveTestFalse(){
         monster.HealthAmount = 0;
-        Assert.assertFalse(monster.isAlive());
+        Assert.assertFalse(monster.alive());
     }
 
 }

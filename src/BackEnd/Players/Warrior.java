@@ -33,6 +33,7 @@ public class Warrior extends Player{
         this.remainingCooldown = Math.max(this.remainingCooldown -1, 0);
     }
 
+
     public void AbilityCast(List<Enemy> enemies){ // Avenger's Shield
         if(remainingCooldown == 0){
             remainingCooldown = abilityCooldown; // After casting ability, should wait again
@@ -42,13 +43,27 @@ public class Warrior extends Player{
             if(!inRange.isEmpty()){
                 Random rand = new Random();
                 Enemy e = inRange.get(rand.nextInt(inRange.size()));
-                e.HealthAmount =  e.HealthAmount - super.HealthPool/10;
-                if(e.isAlive())
-                    this.HealthAmount = this.HealthAmount - e.Defense();
+                int defence = e.Defense();
+                int health = super.HealthPool/10 - defence;
+                e.HealthAmount -= health;
+                if(!e.alive())
+                    e.onDeath();
+                else {
+                    e.onDeath();
+                    enemies.remove(e);
+                }
             }
         } else {
             messageCallback.send(String.format("%s tried to cast %s, but don't have enough resources", get_Name(),super.ABILITY_NAME));
-            tickingGame();
         }
     }
+
+    @Override
+    public String currentDescribe() {
+        return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \nexperience:%s/%s\t\t CooldDown:%s/%s",
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.experience*this.PlayerLevel*50,remainingCooldown,abilityCooldown);
+    }
+
+
+
 }

@@ -35,7 +35,7 @@ class RogueTest {
     @BeforeEach
     void setUp() {
         Bronn = new Rogue(Name,HealthPool,AttackPoints,DefensePoints,Cost);
-        Bronn.init(new Position(2,6),(msg) -> {}, () -> {}, (pos) -> {});
+        Bronn.init(new Position(2,6),(msg) -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         Monster.init(new Position(3,1),(msg) -> {});
         enemies = new LinkedList<Enemy>();

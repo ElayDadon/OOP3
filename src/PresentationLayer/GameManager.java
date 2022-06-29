@@ -33,12 +33,16 @@ public class GameManager {
         while (level <= levelsNum & player.alive()) {
             List<String> lines = loadLevel();
             LevelManager levelManager = new LevelManager(player, lines);
-            levelManager.Tick();
+            levelManager.start();
         }
+        if(player.alive())
+            System.out.println("you won");
+        else
+            System.out.println("you lost");
     }
 
     private List<String> loadLevel() {
-        String levelPath = String.format(path + "\\level%d.txt", level++);
+        String levelPath = String.format(path + "/level%d.txt", level++);
         List<String> lines = new ArrayList<>();
         try {
             lines = Files.readAllLines(Paths.get(levelPath));
@@ -61,7 +65,7 @@ public class GameManager {
         }
         int selectedP = scanner.nextInt();
         try {
-            return player = tiles.producePlayer(selectedP);
+            return player = tiles.producePlayer(selectedP-1);
         } catch (Exception e) {
             throw new RuntimeException("chosen index out of range, please try again");
         }

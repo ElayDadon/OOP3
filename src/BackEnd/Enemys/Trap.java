@@ -1,5 +1,6 @@
 package BackEnd.Enemys;
 
+import BackEnd.Boards.Position;
 import BackEnd.Players.Player;
 
 import java.util.List;
@@ -20,12 +21,13 @@ public class Trap extends Enemy{
     }
 
     @Override
-    public void OnEnemyTurn(Player player){
+    public Position OnEnemyTurn(Player player){
         Visible=TicksCount<VisibilityTime;
         TicksCount = (TicksCount == (VisibilityTime + InvisibilityTime)) ? 0 : TicksCount + 1;
         if(this.Range(player.getPosition())<2) {
             battle(player);
         }
+        return position;
     }
 
     @Override

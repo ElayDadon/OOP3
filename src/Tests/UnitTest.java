@@ -37,7 +37,7 @@ class UnitTest {
         monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         monster.init(new Position(3,1),(msg) -> {});
         player = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
-        player.init(new Position(5,3),(msg) -> {}, () -> {} , (pos) -> {});
+        player.init(new Position(5,3),(msg) -> {} , (pos) -> {});
     }
 
     @Test

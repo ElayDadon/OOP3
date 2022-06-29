@@ -36,6 +36,14 @@ public class Mage extends Player{
         this.CurrentMama = Math.min(this.ManaPool, (this.CurrentMama+this.PlayerLevel ));
     }
 
+
+    public String currentDescribe(){
+        return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \n experience:%s/%s" +
+                "\t\tMama: %s/%s\t\t MamaCost: %s \t\t SpellPower: %s\t\t HitsCount: %s\t\t AbilityRange: %s",
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.experience*this.PlayerLevel*50,CurrentMama,ManaPool,MamaCost,SpellPower,HitsCount,AbilityRange);
+
+    }
+
     //Mage can't use the ability if mama cost > current mama
     private boolean canCostTheAbility(){
         if(this.CurrentMama > this.MamaCost)
@@ -44,7 +52,6 @@ public class Mage extends Player{
     }
 
     public void AbilityCast(List<Enemy> enemies){
-        //TODO: need to implement
         if(canCostTheAbility()){
             this.CurrentMama -= this.MamaCost;
             Integer hits =0;
@@ -52,17 +59,19 @@ public class Mage extends Player{
             Random rand = new Random();
             while ((hits < this.HitsCount) && !EnemyInRange.isEmpty()){
                 Enemy enemyAttack = EnemyInRange.get(rand.nextInt(EnemyInRange.size()));
-                enemyAttack.HealthAmount -= this.SpellPower;
+                int defence = enemyAttack.Defense();
+                int health =  Math.max(this.SpellPower - defence,0);
                 hits++;
-                if(!enemyAttack.isAlive())
+                if(!enemyAttack.alive()) {
+                    enemyAttack.onDeath();
                     EnemyInRange.remove(enemyAttack);
+                }
                 else{
-                    this.HealthAmount -= enemyAttack.Defense();
+                    enemyAttack.HealthAmount -= health;
                 }
             }
         }
         else {
-            tickingGame();
             String msg = MessageFormat.format("{0} does not have enough Mama to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

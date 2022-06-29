@@ -23,8 +23,15 @@ public class boardManager {
         Comparator<Tile> comperT = new Comparator<Tile>() {
             @Override
             public int compare(Tile o1, Tile o2) {
-                int y1 = o1.getPosition().getY();
-                int y2 = o2.getPosition().getY();
+                int y1 = 0;
+                int y2 = 0;
+                try{
+                    y1 = o1.getPosition().getY();
+                    y2 = o2.getPosition().getY();
+                }
+                catch (Exception e){
+                    System.out.println();
+                }
                 if(y1<y2)
                     return -1;
                 else if(y2<y1)
@@ -34,12 +41,14 @@ public class boardManager {
                     int x2 = o2.getPosition().getX();
                     if(x1<x2)
                         return -1;
-                    else
+                    else if(x1 > x2)
                         return 1;
+                    else
+                        return 0;
                 }
             }
         };
-        board.stream().sorted(comperT).collect(Collectors.toList());
+        board = board.stream().sorted(comperT).collect(Collectors.toList());
     }
 
     public String toString(){

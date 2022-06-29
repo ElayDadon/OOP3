@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import BackEnd.Boards.Position;
 import BackEnd.Enemys.Enemy;
 import BackEnd.Players.Player;
 
@@ -7,10 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class enemiesManager {
-    List<Enemy> enemies;
+    private List<Enemy> enemies;
+    private boardManager bm;
 
     public enemiesManager(){
         this.enemies =new ArrayList<Enemy>();
+    }
+    public void setBoard(boardManager b){
+        bm = b;
+    }
+
+    public List<Enemy> getEnemies(){
+        return enemies;
     }
 
     public void addEnemy(Enemy e){
@@ -21,8 +30,11 @@ public class enemiesManager {
         for (Enemy enemy : enemies ){
             if(!enemy.alive())
                 removeEnemy(enemy);
-            else
-                enemy.OnEnemyTurn(player);
+            else{
+               Position p = enemy.OnEnemyTurn(player);
+                enemy.interact(bm.getTile(p));
+            }
+
         }
     }
 

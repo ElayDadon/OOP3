@@ -43,7 +43,7 @@ class MageTest {
     @BeforeEach
     void setUp() {
         Melisandre = new Mage(Name, HealthPool,DefensePoints,AttackPoints,ManaPool,ManaCost,SpellPower,HitCount,Range);
-        Melisandre.init(new Position(3,5),(msg) -> {}, () -> {}, (pos) -> {});
+        Melisandre.init(new Position(3,5),(msg) -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster,AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         Monster.init(new Position(3,1),(msg) -> {});
         enemies = new LinkedList<Enemy>();

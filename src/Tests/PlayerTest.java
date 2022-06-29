@@ -39,7 +39,7 @@ class PlayerTest {
     @BeforeEach
     void setUp() {
         player = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
-        player.init(new Position(5,3),(msg) -> {}, () -> {}, (pos) -> {});
+        player.init(new Position(5,3),(msg) -> {}, (pos) -> {});
         Position playerP = new Position(3,7);
         String ms = String.format("{0} \t\tHealth: {1}\t\t Attack: {2}",Name,player.getCurrentHealth(),AttackPoints);;
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);

@@ -14,7 +14,8 @@ class EmptyTest {
     @BeforeEach
     void setUp() {
         Position position = new Position(3,4);
-        empty = new Empty(position);
+        empty = new Empty();
+        empty.setPosition(position);
     }
 
     @Test

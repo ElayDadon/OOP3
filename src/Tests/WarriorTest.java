@@ -37,7 +37,7 @@ public class WarriorTest {
     public void beforeAny(){
         Position defaultP = new Position(1,1);
         JonSnow = new Warrior(Name,HealthPool,AttackPoints,DefensePoints,abilityCooldown);
-        JonSnow.init(new Position( 1,0), (msg) -> {}, () -> {}, (pos) -> {});
+        JonSnow.init(new Position( 1,0), (msg) -> {}, (pos) -> {});
         Monster = new Monster(MonsterName,MonsterTile,HealthPoolMonster, AttackPointsMonster,DefensePointsMonster,ExperienceMonster,visionRange);
         Monster.init(new Position(9,9),(msg) -> {});
         enemies = new LinkedList<Enemy>();

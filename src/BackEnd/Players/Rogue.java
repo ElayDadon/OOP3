@@ -17,6 +17,15 @@ public class Rogue extends Player{
         this.CurrentEnergy = 100;
     }
 
+    @Override
+    public String currentDescribe() {
+        return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \n experience:%s/%s" +
+                "\t\tcurrentEnergy: %s\t\t cost:%s",
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME(),this.experience,this.experience*this.PlayerLevel*50,CurrentEnergy,Cost);
+    }
+
+
+
     public void LevelingUp() {
         if(isLevelUp()){
             super.LevelingUp();
@@ -35,13 +44,17 @@ public class Rogue extends Player{
             this.CurrentEnergy -= this.Cost;
             List<Enemy> EnemyInRange = super.filterRange(enemies, 2);
             for (Enemy enemy : enemies) {
-                enemy.HealthAmount -=  super.AttackPoints;
-                if(enemy.isAlive())
-                    this.HealthAmount -= enemy.Defense();
+                int defence = enemy.Defense();
+                int health =  Math.max(super.AttackPoints - defence,0);
+                if(enemy.alive())
+                   enemy.HealthAmount -= health;
+                else {
+                    enemy.onDeath();
+                    enemies.remove(enemy);
+                }
             }
         }
         else{
-            tickingGame();
             String msg = MessageFormat.format("{0} does not have enough Energy to use the ability.", super.get_Name());
             messageCallback.send(msg);
         }

@@ -26,7 +26,8 @@ public abstract class Player extends Unit {
         this.PlayerLevel = 1;
     }
 
-    public void init(Position position, MessageCallback messageCallback, DeathMessage deathMessage, PlacementCallBack placementCallBack){
+    public void init(Position position, MessageCallback messageCallback, PlacementCallBack placementCallBack){
+        DeathMessage deathMessage = () -> System.out.println(String.format("{o} enemy died", super.Name));
         super.initialize(position,messageCallback,deathMessage,placementCallBack);
     }
 
@@ -51,7 +52,7 @@ public abstract class Player extends Unit {
     }
 
     public abstract void tickingGame();
-    public abstract void AbilityCast();
+    public abstract void AbilityCast(List<Enemy> enemies);
 
     @Override
     public void accept(Unit unit) { unit.visit(this); }
@@ -60,6 +61,14 @@ public abstract class Player extends Unit {
         return enemies.stream().filter(e -> this.Range(e.getPosition()) < range).collect(Collectors.toList());
     }
 
+    public String getABILITY_NAME(){return ABILITY_NAME;}
+
+    @Override
+    public String describe() {
+        return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d\t\tspecial ability: %s\t\t", get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME());
+    }
+
+    public abstract String currentDescribe();
     @Override
     public void onDeath() {
         messageCallback.send("You lost.");

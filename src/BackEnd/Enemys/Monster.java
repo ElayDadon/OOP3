@@ -1,6 +1,7 @@
 package BackEnd.Enemys;
 
 import BackEnd.Boards.Movement;
+import BackEnd.Boards.Position;
 import BackEnd.Players.Player;
 import FrontEnd.Messages.PlacementCallBack;
 
@@ -19,13 +20,14 @@ public class Monster extends Enemy{
 
     //TODO : why on hide?
     @Override
-    public void OnEnemyTurn(Player player){
+    public Position OnEnemyTurn(Player player){
            if (player.Range(this.position) < vision_range) {
-               placementCallBack.changePlacement(actionsMap.get(playerTrackPattern(player)).get());
+               //placementCallBack.changePlacement(actionsMap.get(playerTrackPattern(player)));
             }
             else {
-               placementCallBack.changePlacement(actionsMap.get(Movement.randomMovement()).get());
+               return actionsMap.get(Movement.randomMovement()).apply(position);
             }
+            return new Position(0,0);
     }
 
     protected Character playerTrackPattern(Player player){

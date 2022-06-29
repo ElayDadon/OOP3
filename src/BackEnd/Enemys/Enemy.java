@@ -25,9 +25,6 @@ public abstract class Enemy extends Unit {
         super.initialize(position,messageCallback,deathMessage,placementCallBack);
     }
 
-    public boolean isAlive(){
-        return this.HealthAmount > 0;
-    }
 
     @Override
     public void accept(Unit unit) { unit.visit(this);
@@ -39,7 +36,7 @@ public abstract class Enemy extends Unit {
         deathMessage.show();
     }
 
-    public abstract void OnEnemyTurn(Player player);
+    public abstract Position OnEnemyTurn(Player player);
 
     @Override
     public void visit(Player p) {

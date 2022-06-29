@@ -30,7 +30,7 @@ public class LevelManager {
     public void start(){
         while (!EM.isOver() & player.alive()){
             System.out.println(BM);
-            System.out.println(player);
+            System.out.println(player.currentDescribe());
             Tick();
         }
     }
@@ -42,18 +42,18 @@ public class LevelManager {
         int height = levelLines.size();
         int width = levelLines.get(0).length();
         List<Character> enemiesChar = new ArrayList<Character>(List.of('s','k','q','z','b','g','w','B','Q','D'));
-        int x = 0;
+
         int y = 0;
         Iterator<String> iter = levelLines.iterator();
         while (iter.hasNext()){
             String line = iter.next();
+            int x = 0;
             for(int i = 0; i < width; i++){
                 Position point = new Position(x,y);
                 MessageCallback messageCallback = (msg) -> System.out.println(msg);
-                DeathMessage deathMessage = () -> System.out.println("You died :(");
                 PlacementCallBack placementCallBack = (pos) -> player.setPosition(pos);
                 if(line.charAt(i)=='@') {
-                    player.init(new Position(x, y),messageCallback,deathMessage,placementCallBack);
+                    player.init(new Position(x, y),messageCallback,placementCallBack);
                     board.add(player);
                 }
                 if(line.charAt(i)=='.'){
@@ -69,10 +69,10 @@ public class LevelManager {
                 }
                 x++;
             }
-
             y++;
         }
         BM = new boardManager(board,height,width);
+        EM.setBoard(BM);
     }
 
     public void Tick(){
@@ -97,7 +97,7 @@ public class LevelManager {
         }
         char key = s.charAt(0);
         if (key == 'e') {
-            player.AbilityCast();
+            player.AbilityCast(EM.getEnemies());
             return player.getPosition();
         }
         else{
