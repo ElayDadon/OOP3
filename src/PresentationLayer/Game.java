@@ -6,8 +6,13 @@ import BackEnd.Enemys.Monster;
 
 public class Game {
     public static void main(String[] args) {
-        String path = "/Users/amitlewinz/Downloads/levels_dir3";//args[0];
-        GameManager gameManager = new GameManager(path);
-        gameManager.start();
+//        String path = "C:/Users/saada/Desktop/OrStudys/OOP_game/levels_dir";
+        if(args.length > 1){
+            GameManager gameManager = new GameManager(args[0]);
+            gameManager.start();
+        }
+        else {
+            throw new RuntimeException("missing levels path");
+        }
     }
 }
