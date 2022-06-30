@@ -40,7 +40,7 @@ public class Mage extends Player{
     public String currentDescribe(){
         return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \n experience:%s/%s" +
                 "\t\tMama: %s/%s\t\t MamaCost: %s \t\t SpellPower: %s\t\t HitsCount: %s\t\t AbilityRange: %s",
-                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.experience*this.PlayerLevel*50,CurrentMama,ManaPool,MamaCost,SpellPower,HitsCount,AbilityRange);
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.PlayerLevel*50,CurrentMama,ManaPool,MamaCost,SpellPower,HitsCount,AbilityRange);
 
     }
 

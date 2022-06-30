@@ -77,7 +77,8 @@ class MageTest {
     void abilityCastFailed() {
         Melisandre.CurrentMama = 20;
         Melisandre.AbilityCast(enemies);
-        Assert.assertEquals("Ability Cast should changes the current Mama to 21",21, (int)Melisandre.CurrentMama);
+        //TODO to verify
+        assertEquals(20, (int)Melisandre.CurrentMama, "Ability Cast should changes the current Mama to 20");
     }
 
 }

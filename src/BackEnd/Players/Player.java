@@ -35,7 +35,7 @@ public abstract class Player extends Unit {
     {
         if (isLevelUp()) {
             experience -= PlayerLevel * 50;
-            PlayerLevel++;
+            PlayerLevel += 1;
             HealthPool += 10 * PlayerLevel;
             HealthAmount = HealthPool;
             AttackPoints += 4 * PlayerLevel;

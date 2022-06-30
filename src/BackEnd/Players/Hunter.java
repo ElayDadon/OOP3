@@ -85,6 +85,6 @@ public class Hunter extends Player{
     public String currentDescribe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \n experience:%s/%s" +
                         "\t\trangeValue: %s\t\tarrows count: %s\t\tcurrent ticks: %s",
-                get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME(),this.experience,this.experience*this.PlayerLevel*50,range,arrowsCount,ticks);
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME(),this.experience,this.PlayerLevel*50,range,arrowsCount,ticks);
     }
 }

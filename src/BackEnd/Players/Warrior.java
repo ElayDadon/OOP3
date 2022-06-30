@@ -62,7 +62,7 @@ public class Warrior extends Player{
     @Override
     public String currentDescribe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \nexperience:%s/%s\t\t CooldDown:%s/%s",
-                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.experience*this.PlayerLevel*50,remainingCooldown,abilityCooldown);
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),this.ABILITY_NAME,this.experience,this.PlayerLevel*50,remainingCooldown,abilityCooldown);
     }
 
 

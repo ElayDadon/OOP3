@@ -21,7 +21,7 @@ public class Rogue extends Player{
     public String currentDescribe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %s\t\tDefense: %s\t\tspecial ability: %s \n experience:%s/%s" +
                 "\t\tcurrentEnergy: %s\t\t cost:%s",
-                get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME(),this.experience,this.experience*this.PlayerLevel*50,CurrentEnergy,Cost);
+                get_Name(), getCurrentHealth(), getAttack(), getDefense(),getABILITY_NAME(),this.experience,this.PlayerLevel*50,CurrentEnergy,Cost);
     }
 
 

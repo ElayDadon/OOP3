@@ -76,5 +76,12 @@ public class boardManager {
         }
         return null;
     }
+    public void setTile(Tile t){
+        board.add(t);
+    }
+
+    public void removeTile(Tile t){
+        board.remove(t);
+    }
 
 }
